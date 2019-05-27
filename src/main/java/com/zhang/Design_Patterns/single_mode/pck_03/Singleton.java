@@ -21,7 +21,7 @@ public class Singleton implements Serializable {
     /**
      * 重写这个方法 保证序列化对象不变
      */
-    /*private Object readResolve() {
+    /*private Singleton readResolve() {
         SingletonInstance.INSTANCE;
     }*/
 

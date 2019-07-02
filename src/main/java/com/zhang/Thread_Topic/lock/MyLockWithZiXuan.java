@@ -6,13 +6,13 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * description
+ * description:带自旋的获取锁
  *
  * @author zb 2019/07/02 18:55
  */
-public class MyLock implements Lock {
+public class MyLockWithZiXuan implements Lock {
 
-   public MyLock() {
+   public MyLockWithZiXuan() {
        this.syn = new Syn();
    }
 
@@ -68,13 +68,14 @@ public class MyLock implements Lock {
         @Override
         protected boolean tryAcquire(int arg) {
             /**
-             * 非阻塞的，获取失败则返回
+             * 自旋
              */
-            if(compareAndSetState(0,1)) {
-                setExclusiveOwnerThread(Thread.currentThread());
-                return true;
+            for(;;) {
+                if(compareAndSetState(0,1)) {
+                    setExclusiveOwnerThread(Thread.currentThread());
+                    return true;
+                }
             }
-            return false;
         }
 
         /**

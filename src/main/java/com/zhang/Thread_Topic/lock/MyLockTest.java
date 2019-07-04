@@ -16,9 +16,10 @@ public class MyLockTest {
 
 
     public static void lock(int i) {
-        if (!myLock.tryLock()) {
-            System.out.println("获取锁失败！" + "----" + i);
-        }
+        /**
+         * 会自旋
+         */
+        myLock.tryLock();
         try {
             System.out.println("获取锁成功：" + i);
             Thread.sleep(1000);

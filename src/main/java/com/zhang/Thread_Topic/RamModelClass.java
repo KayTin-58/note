@@ -1,4 +1,4 @@
-package com.zhang.thread.rammodel;
+package com.zhang.Thread_Topic;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

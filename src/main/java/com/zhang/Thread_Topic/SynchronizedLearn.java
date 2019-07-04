@@ -1,4 +1,4 @@
-package com.zhang.thread;
+package com.zhang.Thread_Topic;
 
 /**
  *补充说明：每个java对象的对象头里都含有一个锁标记,java对象头里信息丰富

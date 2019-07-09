@@ -1,5 +1,9 @@
 package com.zhang.netty.wechat.server;
 
+import com.zhang.netty.wechat.packet.ecode.PacketDecode;
+import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
+import com.zhang.netty.wechat.server.handler.LoginServerHandler;
+import com.zhang.netty.wechat.server.handler.MessageServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -24,7 +28,10 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new PacketDecode());
+                        ch.pipeline().addLast(new LoginServerHandler());
+                        ch.pipeline().addLast(new MessageServerHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
 

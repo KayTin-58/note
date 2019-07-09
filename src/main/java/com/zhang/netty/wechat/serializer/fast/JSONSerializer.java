@@ -12,13 +12,8 @@ import java.util.Map;
  */
 public class JSONSerializer implements SerializerAlgorithm{
 
+    public static Serializer INSTANCE = new JSONSerializer();
 
-
-
-    @Override
-    public void register() {
-       map.put(getSerializerAlgorithm(),JSONSerializer.class);
-    }
 
     @Override
     public byte getSerializerAlgorithm() {

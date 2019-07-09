@@ -1,10 +1,12 @@
 package com.zhang.netty.wechat.client;
 
-import com.zhang.netty.wechat.packet.PacketCodec;
+
+import com.zhang.netty.wechat.client.handler.LoginClientHandler;
+import com.zhang.netty.wechat.client.handler.MessageClientHandler;
+import com.zhang.netty.wechat.packet.ecode.PacketDecode;
+import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
 import com.zhang.netty.wechat.packet.request.MessageRequestPacket;
-import com.zhang.netty.wechat.utils.LoginUtils;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,14 +14,16 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author 闪电侠
+ * @author
  */
+@Slf4j
 public class NettyClient {
     private static final int MAX_RETRY = 10;
     private static final String HOST = "127.0.0.1";
@@ -39,7 +43,11 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        ch.pipeline().addLast(new ClientHandler());
+                        ch.pipeline().addLast(new PacketDecode());
+                        ch.pipeline().addLast(new LoginClientHandler());
+                        ch.pipeline().addLast(new MessageClientHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
+
                     }
                 });
 
@@ -53,7 +61,6 @@ public class NettyClient {
                 /**
                  * 开启输入端
                  */
-                startConsoleThread(((ChannelFuture) future).channel());
             } else if (retry == 0) {
                 System.err.println("重试次数已用完，放弃连接！");
             } else {
@@ -68,21 +75,4 @@ public class NettyClient {
         });
     }
 
-
-    private static void startConsoleThread(Channel channel) {
-        new Thread(() -> {
-            while (!Thread.interrupted()) {
-                if (LoginUtils.hasLogin(channel)) {
-                    System.out.println("输入消息发送至服务端: ");
-                    Scanner sc = new Scanner(System.in);
-                    String line = sc.nextLine();
-
-                    MessageRequestPacket packet = new MessageRequestPacket();
-                    packet.setMessage(line);
-                    ByteBuf byteBuf = PacketCodec.INSTANCE.encode(channel.alloc(), packet);
-                    channel.writeAndFlush(byteBuf);
-                }
-            }
-        }).start();
-    }
 }

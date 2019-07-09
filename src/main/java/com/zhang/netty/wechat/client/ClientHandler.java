@@ -1,9 +1,11 @@
 package com.zhang.netty.wechat.client;
 
 import com.zhang.netty.wechat.packet.Packet;
+import com.zhang.netty.wechat.packet.command.Command;
 import com.zhang.netty.wechat.packet.request.LoginRequestPacket;
 import com.zhang.netty.wechat.packet.PacketCodec;
 import com.zhang.netty.wechat.packet.response.LoginResponsePacket;
+import com.zhang.netty.wechat.packet.response.MessageResponsePacket;
 import com.zhang.netty.wechat.utils.LoginUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -22,7 +24,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("客户端开始登陆！");
+        /*log.info("客户端开始登陆！");
         // 创建登录对象
         LoginRequestPacket loginRequestPacket = LoginRequestPacket.builder().build();
         loginRequestPacket.setUserId(UUID.randomUUID().toString());
@@ -30,10 +32,10 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         loginRequestPacket.setUserPassword("pwd");
 
         ByteBuf buffer = PacketCodec.INSTANCE.encode(ctx.alloc(), loginRequestPacket);
-        /**
+        *//**
          * 发送数据
-         */
-        ctx.channel().writeAndFlush(buffer);
+         *//*
+        ctx.channel().writeAndFlush(buffer);*/
 
     }
 
@@ -49,6 +51,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             } else {
                 log.info("服务端响应：登陆失败！");
             }
+        }else if(packet.getCommand().equals(Command.MESSAGE_RESPONSE )) {
+            MessageResponsePacket message = (MessageResponsePacket)packet;
+            log.info("客户端收到服务端响应：---->"+message.getMessage());
         }
+
+
     }
 }

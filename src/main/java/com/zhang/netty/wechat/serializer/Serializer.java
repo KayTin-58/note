@@ -11,16 +11,6 @@ import java.util.Map;
 public interface Serializer {
 
     /**
-     * 用来管理Service
-     */
-    Map<Byte,Class> map = new HashMap<>();
-
-    /**
-     * 注册Service
-     */
-    void register();
-
-    /**
      * 序列化算法
      */
     byte getSerializerAlgorithm();

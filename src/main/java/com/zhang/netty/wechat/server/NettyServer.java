@@ -10,6 +10,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 public class NettyServer {
 
@@ -27,7 +28,12 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
                     protected void initChannel(NioSocketChannel ch) {
+                        /**
+                         * 添加拆包器
+                         */
+                        ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginServerHandler());
                         ch.pipeline().addLast(new MessageServerHandler());

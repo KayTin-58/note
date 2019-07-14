@@ -36,6 +36,21 @@ public class ConcurrentHashMapLearn {
          *   if ((tab = table) == null || (n = tab.length) == 0)
          *             n = (tab = resize()).length;
          *
+         *
+         *   if ((p = tab[i = (n - 1) & hash]) == null)
+         *   //说明没有尾巴
+         *             tab[i] = newNode(hash, key, value, null);
+         *         else {
+         *             //有尾巴
+         *             Node<K,V> e; K k;
+         *             if (p.hash == hash &&
+         *                 ((k = p.key) == key || (key != null && key.equals(k))))
+         *                 e = p;
+         *                 //链表长度大于8  变成红黑树
+         *             else if (p instanceof TreeNode)
+         *                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+         *
+         *
          *  resize:
          *     两倍扩容
          *     if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&oldCap >= DEFAULT_INITIAL_CAPACITY)
@@ -47,6 +62,8 @@ public class ConcurrentHashMapLearn {
          *           //是否是红黑树（链表超过8会转为红黑树）
          *           else if (e instanceof TreeNode)
          *
+         *                     0.75                      16
+         *  newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
          *
          */
         hashMap.put("word",3);

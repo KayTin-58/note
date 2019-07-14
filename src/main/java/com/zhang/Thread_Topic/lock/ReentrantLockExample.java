@@ -1,5 +1,6 @@
 package com.zhang.Thread_Topic.lock;
 
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -11,9 +12,12 @@ public class ReentrantLockExample {
     static  ReentrantLock reentrantLock =new ReentrantLock();
 
 
+
+
     private String appName = "安卓";
     public static void main(String[] args) {
-        reentrantLock.newCondition();
+        Condition condition = reentrantLock.newCondition();
+
     }
 
     public void write(String name) {

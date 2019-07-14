@@ -1,6 +1,7 @@
 package com.zhang.netty.wechat.server;
 
-import com.zhang.netty.wechat.Spliter;
+import com.zhang.netty.wechat.basehandler.LifeCyCleTestHandler;
+import com.zhang.netty.wechat.basehandler.Spliter;
 import com.zhang.netty.wechat.packet.ecode.PacketDecode;
 import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
 import com.zhang.netty.wechat.server.handler.LoginServerHandler;
@@ -11,7 +12,6 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 public class NettyServer {
 
@@ -31,6 +31,7 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
+                        ch.pipeline().addLast(new LifeCyCleTestHandler());
                         /**
                          * 添加拆包器
                          *

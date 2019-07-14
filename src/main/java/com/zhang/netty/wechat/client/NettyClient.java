@@ -1,25 +1,21 @@
 package com.zhang.netty.wechat.client;
 
 
-import com.zhang.netty.wechat.Spliter;
+import com.zhang.netty.wechat.basehandler.LifeCyCleTestHandler;
+import com.zhang.netty.wechat.basehandler.Spliter;
 import com.zhang.netty.wechat.client.handler.LoginClientHandler;
 import com.zhang.netty.wechat.client.handler.MessageClientHandler;
 import com.zhang.netty.wechat.packet.ecode.PacketDecode;
 import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
-import com.zhang.netty.wechat.packet.request.MessageRequestPacket;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,6 +41,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        ch.pipeline().addLast(new LifeCyCleTestHandler());
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginClientHandler());

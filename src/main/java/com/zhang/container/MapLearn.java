@@ -11,17 +11,30 @@ public class MapLearn {
     public static void main(String[] args) {
         System.out.println(hash("9999"));
 
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("9999","9999");
+        HashMap<Integer,String> hashMap = new HashMap<>();
 
-        int hash = hash("9999");
-        int n = hashMap.size();
-        System.out.println("n:"+n);
-        int index = (n - 1) & hash;
-        System.out.println("index:"+index);
+        for(int i = 0; i < 20; i++) {
+            hashMap.put(i,String.valueOf(i+1));
+        }
 
 
-        System.out.println((3&1754714));
+
+
+        String key = "9999";
+        int oldCap = 16;
+        int hash = hash(key);
+        int index = (oldCap - 1) & hash;
+
+        System.out.println("oldIndex:"+index);
+
+        int hashOld = hash&oldCap;
+
+        System.out.println("old+16:"+(index+16));
+        System.out.println((32-1)&hash);
+
+
+        System.out.println(5&3);
+
     }
 
 

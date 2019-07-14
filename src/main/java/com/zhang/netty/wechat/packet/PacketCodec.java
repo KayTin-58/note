@@ -8,16 +8,20 @@ import com.zhang.netty.wechat.packet.response.MessageResponsePacket;
 import com.zhang.netty.wechat.serializer.Serializer;
 import com.zhang.netty.wechat.serializer.fast.JSONSerializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO 待调整
+
+/**
+ * 解码/编码器
+ */
 @Slf4j
 public class PacketCodec {
 
-    private static final int MAGIC_NUMBER = 0x12345678;
+    public static final int MAGIC_NUMBER = 0x12345678;
     public static final PacketCodec INSTANCE = new PacketCodec();
     private final Map<Byte, Class<? extends Packet>> packetTypeMap;
 

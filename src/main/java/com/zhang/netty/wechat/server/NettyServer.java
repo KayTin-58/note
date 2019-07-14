@@ -1,5 +1,6 @@
 package com.zhang.netty.wechat.server;
 
+import com.zhang.netty.wechat.Spliter;
 import com.zhang.netty.wechat.packet.ecode.PacketDecode;
 import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
 import com.zhang.netty.wechat.server.handler.LoginServerHandler;
@@ -32,8 +33,10 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) {
                         /**
                          * 添加拆包器
+                         *
+                         * 基于偏移长度的拆包
                          */
-                        ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
+                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginServerHandler());
                         ch.pipeline().addLast(new MessageServerHandler());

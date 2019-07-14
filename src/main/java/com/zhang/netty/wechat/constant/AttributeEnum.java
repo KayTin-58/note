@@ -22,6 +22,4 @@ public enum AttributeEnum {
         return attributeKey_Login;
     }
 
-    /*public void setAttributeKey(AttributeKey attributeKey) {
-        this.attributeKey_Login = attributeKey;
-    }*/}
+    }

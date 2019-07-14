@@ -1,6 +1,7 @@
 package com.zhang.netty.wechat.client;
 
 
+import com.zhang.netty.wechat.Spliter;
 import com.zhang.netty.wechat.client.handler.LoginClientHandler;
 import com.zhang.netty.wechat.client.handler.MessageClientHandler;
 import com.zhang.netty.wechat.packet.ecode.PacketDecode;
@@ -44,7 +45,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
+                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginClientHandler());
                         ch.pipeline().addLast(new MessageClientHandler());

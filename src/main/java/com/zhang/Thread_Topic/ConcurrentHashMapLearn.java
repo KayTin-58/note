@@ -1,6 +1,5 @@
 package com.zhang.Thread_Topic;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -11,63 +10,55 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConcurrentHashMapLearn {
 
     public static void main(String[] args) {
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap(1000);
 
-
-
-
-    }
-
-
-    static void hashMap() {
-        HashMap<String,Integer> hashMap = new HashMap();
-
-        // putVal(hash(key), key, value, false, true);
         /**
-         *  Node<K,V>[] tab; Node<K,V> p; int n, i;
+         * tableSizeFor(initialCapacity + (initialCapacity >>> 1) + 1));
+         */
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap(1000);
+        /**
+         * 在新的JDK中取消了Segment模式
          *
-         *  Node:
-         *         final int hash;
-         *         final K key;
-         *         V value;
-         *         Node<K,V> next;
+         * //自旋  防止tab被更新过
+         *  for (Node<K,V>[] tab = table;;){
+         *     if (tab == null || (n = tab.length) == 0)
+         *                 tab = initTable();
+         *             else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+         *                 if (casTabAt(tab, i, null,
+         *                              new Node<K,V>(hash, key, value, null)))
+         *                     break;                   // no lock when adding to empty bin
+         *             }
          *
-         *    //table== null 或者 长度为0 ，进行扩容
-         *   if ((tab = table) == null || (n = tab.length) == 0)
-         *             n = (tab = resize()).length;
+         *         //使用
+         *         synchronized (f)  {
          *
-         *
-         *   if ((p = tab[i = (n - 1) & hash]) == null)
-         *   //说明没有尾巴
-         *             tab[i] = newNode(hash, key, value, null);
-         *         else {
-         *             //有尾巴
-         *             Node<K,V> e; K k;
-         *             if (p.hash == hash &&
-         *                 ((k = p.key) == key || (key != null && key.equals(k))))
-         *                 e = p;
-         *                 //链表长度大于8  变成红黑树
-         *             else if (p instanceof TreeNode)
-         *                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+         *         }
          *
          *
-         *  resize:
-         *     两倍扩容
-         *     if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&oldCap >= DEFAULT_INITIAL_CAPACITY)
-         *      将旧的tableNode赋值给新的table
-         *      for (int j = 0; j < oldCap; ++j)
-         *           //判断节点是否有链表
-         *           if (e.next == null)
-         *             newTab[e.hash & (newCap - 1)] = e;
-         *           //是否是红黑树（链表超过8会转为红黑树）
-         *           else if (e instanceof TreeNode)
+         *     //最后 计数增加
+         *     addCount(1L, binCount);
+         *  }
          *
-         *                     0.75                      16
-         *  newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
          *
          */
-        hashMap.put("word",3);
+        concurrentHashMap.put("key-01","01");
+        concurrentHashMap.put("key-02","02");
+
+        String value = (String)concurrentHashMap.get("key-01");
+
+        System.out.println("value:"+value);
+
+        concurrentHashMap.size();
+
+
+        /**
+         * 1、首先尝试两次不加锁的情况计算每个segment中数据容量的大小
+         * 2、如果在计算之后发现数据计算过程中数据容量发生变化则加锁禁止 put/remove/clear操作
+         */
+        concurrentHashMap.size();
+
     }
+
+
 
     static void concurrentHashMap() {
 

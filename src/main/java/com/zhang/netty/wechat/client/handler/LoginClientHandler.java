@@ -3,6 +3,7 @@ package com.zhang.netty.wechat.client.handler;
 import com.zhang.netty.wechat.packet.request.LoginRequestPacket;
 import com.zhang.netty.wechat.packet.request.MessageRequestPacket;
 import com.zhang.netty.wechat.packet.response.LoginResponsePacket;
+import com.zhang.netty.wechat.utils.LoginUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -28,6 +29,11 @@ public class LoginClientHandler extends SimpleChannelInboundHandler<LoginRespons
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket resp) throws Exception {
         if (resp.isSuccess()) {
             log.info("服务端响应：登陆成功！");
+            /**
+             * 登陆成功标记
+             * 写入数据库
+             */
+            LoginUtils.markLogin(ctx.channel());
             startConsoleThread(ctx.channel());
         } else {
             log.info("服务端响应：登陆失败！");

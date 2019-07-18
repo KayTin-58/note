@@ -7,7 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
- * description
+ * description：编码器
  *
  * @author zb 2019/07/05 14:29
  */

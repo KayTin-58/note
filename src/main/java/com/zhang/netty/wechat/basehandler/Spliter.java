@@ -16,6 +16,11 @@ public class Spliter extends LengthFieldBasedFrameDecoder {
     private static final int LENGTH_FIELD_LENGTH = 4;
 
     public Spliter() {
+        /**
+         * 指定编码的偏移量
+         * LENGTH_FIELD_OFFSET ：偏移量为7
+         * LENGTH_FIELD_LENGTH ：所占字节长度为4
+         */
         super(Integer.MAX_VALUE, LENGTH_FIELD_OFFSET, LENGTH_FIELD_LENGTH);
     }
 

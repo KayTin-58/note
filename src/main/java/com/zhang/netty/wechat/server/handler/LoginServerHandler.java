@@ -1,9 +1,8 @@
 package com.zhang.netty.wechat.server.handler;
 
-import com.zhang.netty.wechat.packet.PacketCodec;
 import com.zhang.netty.wechat.packet.request.LoginRequestPacket;
 import com.zhang.netty.wechat.packet.response.LoginResponsePacket;
-import io.netty.buffer.ByteBuf;
+import com.zhang.netty.wechat.utils.LoginUtils;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +23,7 @@ public class LoginServerHandler extends SimpleChannelInboundHandler<LoginRequest
         LoginResponsePacket loginResponse = new LoginResponsePacket();
         loginResponse.setVersion(requestPacket.getVersion());
         if (valid(requestPacket)) {
+            LoginUtils.markLogin(ctx.channel());
             loginResponse.setSuccess(true);
             log.info("客户端请求登录，密码验证通过");
             loginResponse.setReason(new Date() + "服务端验证通过！");
@@ -36,7 +36,11 @@ public class LoginServerHandler extends SimpleChannelInboundHandler<LoginRequest
     }
 
 
-
+    /**
+     * 从数据库读取数据判断
+     * @param requestPacket
+     * @return
+     */
     private boolean valid(LoginRequestPacket requestPacket) {
         return true;
     }

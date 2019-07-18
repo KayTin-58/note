@@ -4,6 +4,7 @@ import com.zhang.netty.wechat.basehandler.LifeCyCleTestHandler;
 import com.zhang.netty.wechat.basehandler.Spliter;
 import com.zhang.netty.wechat.packet.ecode.PacketDecode;
 import com.zhang.netty.wechat.packet.ecode.PacketEncoder;
+import com.zhang.netty.wechat.server.handler.AuthHandler;
 import com.zhang.netty.wechat.server.handler.LoginServerHandler;
 import com.zhang.netty.wechat.server.handler.MessageServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
@@ -40,6 +41,8 @@ public class NettyServer {
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginServerHandler());
+
+                        ch.pipeline().addLast(new AuthHandler());
                         ch.pipeline().addLast(new MessageServerHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }

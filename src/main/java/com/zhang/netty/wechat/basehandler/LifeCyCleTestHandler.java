@@ -4,13 +4,17 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
- * description
- *
+ * description：生命周期检测
  * @author zb 2019/07/14 18:12
  */
 @Slf4j
 public class LifeCyCleTestHandler extends ChannelInboundHandlerAdapter {
+
+    public static AtomicInteger atomicInteger = new AtomicInteger(0);
+
     public LifeCyCleTestHandler() {
         log.info("............LifeCyCleTestHandler()........");
     }
@@ -30,18 +34,39 @@ public class LifeCyCleTestHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         log.info("..............channelActive().....");
+        atomicInteger.getAndAdd(1);
         super.channelActive(ctx);
     }
 
+    /**
+     * "channelInactive(): 表面这条连接已经被关闭了，这条连接在 TCP 层面已经不再是 ESTABLISH 状态了"
+     * @param ctx
+     * @throws Exception
+     */
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        log.info("..............channelInactive().....");
+        atomicInteger.getAndAdd(-1);
+        super.channelInactive(ctx);
+    }
+
+
+    /**
+     * 比如1000个字节的包分为了10个100字节的分包，底层socket每次read100字节就会调用channelReadComplete，
+     * 而当读完10个分包组装成1000字节后才会调用channelRead()来处理。
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        log.info("..............channelRead().....");
+        log.info("..............channelRead()....."+ctx.toString()+";;;;"+msg.toString());
         super.channelRead(ctx, msg);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        log.info("..............channelReadComplete().....");
+        log.info("..............channelReadComplete()....."+ctx.toString());
         super.channelReadComplete(ctx);
     }
 

@@ -40,11 +40,11 @@ public class PacketCodec {
         Serializer serializer = new JSONSerializer();
         byte[] bytes = serializer.serialize(packet);
         // 3. 实际编码过程
-        byteBuf.writeInt(MAGIC_NUMBER);
-        byteBuf.writeByte(packet.getVersion());
-        byteBuf.writeByte(serializer.getSerializerAlgorithm());
-        byteBuf.writeByte(packet.getCommand());
-        byteBuf.writeInt(bytes.length);
+        byteBuf.writeInt(MAGIC_NUMBER); //4
+        byteBuf.writeByte(packet.getVersion()); //1
+        byteBuf.writeByte(serializer.getSerializerAlgorithm()); //1
+        byteBuf.writeByte(packet.getCommand()); //1
+        byteBuf.writeInt(bytes.length); //4
         byteBuf.writeBytes(bytes);
     }
 

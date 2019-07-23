@@ -1,4 +1,4 @@
-package com.zhang.algorithm;
+package com.zhang;
 
 /**
  * description

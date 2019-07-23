@@ -1,4 +1,4 @@
-package com.zhang.FenBuShi_Base.bitmap;
+package com.zhang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class BitMap {
     }
 
     public static void main(String[] args){
-        int num[] = {1,5,30,32,64,56,159,120,21,17,35,45};
+        int num[] = {1,2,5,30,32,64,56,159,120,21,17,35,45};
         BitMap map = new BitMap();
 
         for(int i=0;i<num.length;i++){

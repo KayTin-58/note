@@ -44,7 +44,7 @@ public class LoginClientHandler extends SimpleChannelInboundHandler<LoginRespons
     private static void startConsoleThread(Channel channel) {
         new Thread(() -> {
             while (!Thread.interrupted()) {
-                if (true) {
+                if (LoginUtils.hasLogin(channel)) {
                     System.out.println("输入消息发送至服务端: ");
                     Scanner sc = new Scanner(System.in);
                     String line = sc.nextLine();
@@ -73,5 +73,10 @@ public class LoginClientHandler extends SimpleChannelInboundHandler<LoginRespons
          * 发送数据
          */
         ctx.channel().writeAndFlush(loginRequestPacket);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
     }
 }

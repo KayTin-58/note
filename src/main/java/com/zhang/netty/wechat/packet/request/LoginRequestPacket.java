@@ -32,4 +32,5 @@ public class LoginRequestPacket extends Packet {
     public Byte getCommand() {
         return LOGIN_REQUEST;
     }
+
 }

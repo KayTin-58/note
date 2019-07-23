@@ -41,7 +41,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        ch.pipeline().addLast(new LifeCyCleTestHandler());
+                        //ch.pipeline().addLast(new LifeCyCleTestHandler());
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginClientHandler());

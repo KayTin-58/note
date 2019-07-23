@@ -1,5 +1,6 @@
 package com.zhang.netty.wechat.basehandler;
 
+import com.zhang.netty.wechat.utils.LoginUtils;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +46,9 @@ public class LifeCyCleTestHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("..............channelInactive().....");
+        log.info("..............channelInactive()....."+LoginUtils.getSession(ctx.channel()).toString());
         atomicInteger.getAndAdd(-1);
+        //LoginUtils.unBindSession(ctx.channel());
         super.channelInactive(ctx);
     }
 

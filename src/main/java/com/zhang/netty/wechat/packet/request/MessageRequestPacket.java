@@ -14,6 +14,7 @@ import lombok.Setter;
 public class MessageRequestPacket extends Packet {
 
     private String message;
+    private String toUserId;
 
 
     @Override
@@ -25,6 +26,7 @@ public class MessageRequestPacket extends Packet {
     public String toString() {
         return "MessageRequestPacket{" +
                 "message='" + message + '\'' +
+                ", toUserId='" + toUserId + '\'' +
                 '}';
     }
 }

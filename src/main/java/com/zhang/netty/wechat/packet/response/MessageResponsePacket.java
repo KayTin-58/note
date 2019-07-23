@@ -13,10 +13,19 @@ import lombok.Setter;
 @Getter
 public class MessageResponsePacket extends Packet {
 
+    private String fromUserId;
     private String message;
 
     @Override
     public Byte getCommand() {
         return MESSAGE_RESPONSE;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageResponsePacket{" +
+                "fromUserId='" + fromUserId + '\'' +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

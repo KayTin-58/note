@@ -12,14 +12,20 @@ public enum AttributeEnum {
     /**
      * 登陆标记
      */
-    IS_LOGIN(AttributeKey.newInstance("LOGIN"));
-    private AttributeKey attributeKey_Login;
+    IS_LOGIN(AttributeKey.newInstance("LOGIN")),
+    /**
+     * Session标记
+     */
+    SESSION(AttributeKey.newInstance("SESSION"));
+
+    private AttributeKey attributeKey;
 
     AttributeEnum(AttributeKey attributeKey) {
-         this.attributeKey_Login = attributeKey;
-    }
-    public AttributeKey getAttributeKey() {
-        return attributeKey_Login;
+        this.attributeKey = attributeKey;
     }
 
+    public AttributeKey getAttributeKey() {
+        return attributeKey;
     }
+
+}

@@ -1,5 +1,7 @@
 package com.zhang;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * description
  *
@@ -7,6 +9,12 @@ package com.zhang;
  */
 public class Test {
     public static void main(String[] args) {
+
+
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        int i = atomicInteger.addAndGet(3);
+        System.out.println(i);
+
         String P_UserId = "zhangsan";
         String P_OrderId = "201611101001";
         String P_CardId = "6217230222222222222";
@@ -43,3 +51,5 @@ public class Test {
     }
 
 }
+
+

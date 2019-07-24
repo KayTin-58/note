@@ -34,7 +34,7 @@ public class DistributedLock implements Lock, Watcher {
     public DistributedLock() {
 
         try {
-            zk=new ZooKeeper("192.168.254.135:2181",
+            zk=new ZooKeeper("192.168.230.140:2181",
                     4000,this);
             //判断根节点是否存在
             Stat stat=zk.exists(ROOT_LOCK,false);

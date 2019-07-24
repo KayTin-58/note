@@ -47,8 +47,6 @@ public class Interrupted01 {
                 i.getAndAdd(1);
                 System.out.println("flag:"+flag+";"+"i:"+i.get());
             }
-
-
         }
 
         public void cancel() {

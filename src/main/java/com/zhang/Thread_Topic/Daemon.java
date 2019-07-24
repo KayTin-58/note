@@ -12,7 +12,7 @@ public class Daemon {
         Thread thread = new Thread(new DaemonRun(),"DaemonRun");
         thread.setDaemon(true);
         thread.start();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
     }
 
 

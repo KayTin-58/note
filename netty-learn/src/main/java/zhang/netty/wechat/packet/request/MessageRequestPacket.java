@@ -1,8 +1,10 @@
 package zhang.netty.wechat.packet.request;
 
-import com.zhang.netty.wechat.packet.Packet;
+
 import lombok.Getter;
 import lombok.Setter;
+import zhang.netty.wechat.packet.Packet;
+
 
 /**
  * description

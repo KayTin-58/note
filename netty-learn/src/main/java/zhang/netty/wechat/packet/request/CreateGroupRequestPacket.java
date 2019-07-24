@@ -1,10 +1,13 @@
 package zhang.netty.wechat.packet.request;
 
-import com.zhang.netty.wechat.packet.Packet;
+
 import lombok.Getter;
 import lombok.Setter;
+import zhang.netty.wechat.packet.Packet;
 
 import java.util.List;
+
+import static zhang.netty.wechat.packet.command.Command.GROUPCHAT_REQUEST;
 
 /**
  * description:创建群组的请求

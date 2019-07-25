@@ -22,6 +22,10 @@ public class ReentrantLockExample {
 
     public void write(String name) {
          reentrantLock.lock();
+        /**
+         * 可重入获取锁
+         */
+        reentrantLock.tryLock();
         try {
             this.appName = name;
         } finally {

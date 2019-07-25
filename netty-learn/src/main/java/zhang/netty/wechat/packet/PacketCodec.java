@@ -1,14 +1,15 @@
 package zhang.netty.wechat.packet;
 
-import com.zhang.netty.wechat.constant.SerializeManager;
-import com.zhang.netty.wechat.packet.request.LoginRequestPacket;
-import com.zhang.netty.wechat.packet.request.MessageRequestPacket;
-import com.zhang.netty.wechat.packet.response.LoginResponsePacket;
-import com.zhang.netty.wechat.packet.response.MessageResponsePacket;
-import com.zhang.netty.wechat.serializer.Serializer;
-import com.zhang.netty.wechat.serializer.fast.JSONSerializer;
+
 import io.netty.buffer.ByteBuf;
 import lombok.extern.slf4j.Slf4j;
+import zhang.netty.wechat.constant.SerializeManager;
+import zhang.netty.wechat.packet.request.LoginRequestPacket;
+import zhang.netty.wechat.packet.request.MessageRequestPacket;
+import zhang.netty.wechat.packet.response.LoginResponsePacket;
+import zhang.netty.wechat.packet.response.MessageResponsePacket;
+import zhang.netty.wechat.serializer.Serializer;
+import zhang.netty.wechat.serializer.fast.JSONSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,9 +30,9 @@ public class PacketCodec {
     private PacketCodec() {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LoginRequestPacket.LOGIN_REQUEST, LoginRequestPacket.class);
-        packetTypeMap.put(LoginResponsePacket.LOGIN_RESPONSE,LoginResponsePacket.class);
+        packetTypeMap.put(LoginResponsePacket.LOGIN_RESPONSE, LoginResponsePacket.class);
         packetTypeMap.put(MessageRequestPacket.MESSAGE_REQUEST,MessageRequestPacket.class);
-        packetTypeMap.put(MessageResponsePacket.MESSAGE_RESPONSE,MessageResponsePacket.class);
+        packetTypeMap.put(MessageResponsePacket.MESSAGE_RESPONSE, MessageResponsePacket.class);
     }
 
 

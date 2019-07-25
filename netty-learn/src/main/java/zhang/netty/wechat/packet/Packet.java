@@ -1,7 +1,8 @@
 package zhang.netty.wechat.packet;
 
-import com.zhang.netty.wechat.packet.command.Command;
+
 import lombok.Data;
+import zhang.netty.wechat.packet.command.Command;
 
 /**
  * description

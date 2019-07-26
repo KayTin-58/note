@@ -1,0 +1,39 @@
+1、心跳感知
+在App与Netty连接的时候，如果App调成飞行模式,netty是无法感知的
+
+核心Handler:
+ # IdleStateHandler
+ # HeartServerHandler
+
+
+Http
+ # 无状态的
+ # 基于请求和响应的
+
+ 请求头：Header
+ 响应体：Body
+
+ # http1.0
+   1、响应之后即链接断掉
+
+ # http1.1
+   1、可以在指定时间内保持链接
+
+  //基础Handler
+
+WebSocker协议：
+ # ws://localhost:port
+ //基础Handler
+ ChannelPipeline channelPipeline = ch.pipeline();
+ channelPipeline.addLast("HttpServerCodec",new HttpServerCodec());
+ channelPipeline.addLast("HttpServerCodec",new ChunkedWriteHandler());
+ channelPipeline.addLast("HttpServerCodec",new HttpObjectAggregator(8192));
+ channelPipeline.addLast(new WebSocketServerProtocolHandler(PATH));
+
+ # 基于一次的连接
+
+ProtoBuf使用：
+  1、定义说明文件：对象的结构体、方法、属性等信息
+ # 下载编译器 https://github.com/protocolbuffers/protobuf/releases
+ # 配置环境变量 D:\protocal\protoc-3.9.0-win64\bin
+

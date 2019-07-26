@@ -32,11 +32,13 @@ public class Server {
          */
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
+        //EventLoopGroup parentGroup, EventLoopGroup childGroup
         serverBootstrap.group(boss,worker)
                 //设置通信管道
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new ServerChannelInitilizer());
-
+                //.handler(new IdleStateHandler(5,7,10))
+                //worker
+                .childHandler(new WebSocketChannelInitilizer());
         startServer(serverBootstrap,8888);
     }
 

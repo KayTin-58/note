@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  description
+  @author zb 2019/07/26 14:59
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script  type="text/javascript">
+    var socket;
+    if(window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8888/ws")
+
+        socket.onmessage = function (ev) {
+            //alert(ev.data)
+            var response = document.getElementById("responseText")
+            response.value = response.value+"\n" +ev.data
+        }
+
+        socket.open = function () {
+            var response = document.getElementById("responseText")
+            response.value = response.value+"\n" +"连接开启！"
+        }
+
+        socket.onclose = function () {
+            var response = document.getElementById("responseText")
+            response.value = response.value+"\n" +"连接关闭！"
+        }
+
+        function send(message) {
+            if(!window.WebSocket) {
+                alert("浏览器不支持WebSocket!")
+            }
+
+            if(socket.readyState = WebSocket.OPEN) {
+                socket.send(message)
+            }
+        }
+
+    }
+</script>
+
+<form style="width: 300px">
+    <h3>客户端输入消息</h3>
+    <textarea name="message"  style="width: 300px;height: 140px"></textarea>
+    <input type="button" value="发送消息" onclick="send(this.form.message.value)">
+    <h3>服务端输出消息</h3>
+    <textarea id="responseText"  style="width: 300px;height: 140px"></textarea>
+
+</form>
+</body>
+</html>

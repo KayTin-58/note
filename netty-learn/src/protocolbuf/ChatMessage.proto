@@ -1,0 +1,43 @@
+syntax = "proto2";
+
+package tutorial;
+
+option java_package = "com.example.tutorial";
+option java_outer_classname = "Messages";
+
+
+message ChatMsg {
+   enum MsgType {
+      Message  = 1;
+      Login  = 2;
+      CreateGroup  = 3;
+   }
+
+   required MsgType msg_type = 1;
+
+   oneof megBody {
+     Message msg = 2;
+     Login login = 3;
+     CreateGroup create_group = 4;
+   }
+}
+
+
+message Login {
+  optional string id = 1;
+  optional string user_name = 2;
+  optional string user_password = 3;
+}
+
+message Message {
+  optional string id = 1;
+  optional string msg = 2;
+  optional string from_user = 3;
+  optional string to_user = 4;
+}
+
+message CreateGroup {
+   optional string id = 1;
+   optional string user_id = 2;
+   optional string group_name = 3;
+}

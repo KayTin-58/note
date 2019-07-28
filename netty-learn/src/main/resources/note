@@ -37,3 +37,7 @@ ProtoBuf使用：
  # 下载编译器 https://github.com/protocolbuffers/protobuf/releases
  # 配置环境变量 D:\protocal\protoc-3.9.0-win64\bin
 
+ # 多消息类型传输
+   com.example.tutorial.Messages
+ 考虑：
+   怎样在客户端和服务端 共享 protobuf生成的共享消息代码

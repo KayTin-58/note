@@ -38,7 +38,7 @@ public class Server {
                 .channel(NioServerSocketChannel.class)
                 //.handler(new IdleStateHandler(5,7,10))
                 //worker
-                .childHandler(new WebSocketChannelInitilizer());
+                .childHandler(new ProtocolServerChannelInitilizer());
         startServer(serverBootstrap,8888);
     }
 

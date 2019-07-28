@@ -30,7 +30,7 @@ public class Client {
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
-                .handler(new ClinetChannelInitilizer());
+                .handler(new ProtoBufClientChannelInitilizer());
 
         connect(bootstrap, HOST, PORT, MAX_RETRY);
     }

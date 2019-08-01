@@ -1,7 +1,5 @@
 package com.zhang.Thread_Topic.threadpool;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.sql.Connection;
 import java.util.LinkedList;
 

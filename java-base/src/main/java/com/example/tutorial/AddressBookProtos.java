@@ -671,7 +671,7 @@ public final class AddressBookProtos {
                   PhoneNumber.class, Builder.class);
         }
 
-        // Construct using com.example.tutorial.AddressBookProtos.Person.PhoneNumber.newBuilder()
+        // Construct using AddressBookProtos.Person.PhoneNumber.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -711,7 +711,7 @@ public final class AddressBookProtos {
         public PhoneNumber build() {
           PhoneNumber result = buildPartial();
           if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
+            throw Builder.newUninitializedMessageException(result);
           }
           return result;
         }
@@ -1356,7 +1356,7 @@ public final class AddressBookProtos {
                 Person.class, Builder.class);
       }
 
-      // Construct using com.example.tutorial.AddressBookProtos.Person.newBuilder()
+      // Construct using AddressBookProtos.Person.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1405,7 +1405,7 @@ public final class AddressBookProtos {
       public Person build() {
         Person result = buildPartial();
         if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+          throw Builder.newUninitializedMessageException(result);
         }
         return result;
       }
@@ -2378,7 +2378,7 @@ public final class AddressBookProtos {
                 AddressBook.class, Builder.class);
       }
 
-      // Construct using com.example.tutorial.AddressBookProtos.AddressBook.newBuilder()
+      // Construct using AddressBookProtos.AddressBook.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2421,7 +2421,7 @@ public final class AddressBookProtos {
       public AddressBook build() {
         AddressBook result = buildPartial();
         if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+          throw Builder.newUninitializedMessageException(result);
         }
         return result;
       }

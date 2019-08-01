@@ -7,7 +7,8 @@
         <module>netty-learn</module>
         <module>design-patterns</module>
 		<module>algorithm-learn</module>
-	</modules>
+        <module>java-base</module>
+    </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

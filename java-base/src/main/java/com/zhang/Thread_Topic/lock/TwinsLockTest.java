@@ -1,9 +1,6 @@
 package com.zhang.Thread_Topic.lock;
 
 
-import java.util.concurrent.locks.Lock;
-
-
 public class TwinsLockTest {
 
     static TwinsLock lock = new TwinsLock();

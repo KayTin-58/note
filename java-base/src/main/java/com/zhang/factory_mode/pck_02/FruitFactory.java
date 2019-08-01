@@ -1,7 +1,7 @@
 package com.zhang.factory_mode.pck_02;
 
-import com.zhang.Design_Patterns.factory_mode.pck_01.Fruit;
 
+import com.zhang.factory_mode.pck_01.Fruit;
 
 /**
  * 抽象工厂

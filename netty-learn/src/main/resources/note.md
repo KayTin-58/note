@@ -108,3 +108,107 @@ Thrift的使用：
 
 -DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。
 -Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。
+
+
+
+
+### **IO**
+
+io中的设计模式
+  装饰模式  装饰的是对象
+  
+### Nio
+三个核心概念：
+
+1、selecter：选择器
+2、channel ：通道
+3、buffer ：一块内存，实际是一个数组。既可以读又可以写
+
+```
+一般建议在把一个Buffer的容量使用完之后再flip
+否则buffer的limit会越来越小
+当然也可以使用clear
+
+ /**
+         * public final Buffer flip() {
+         *         limit = position;
+         *         position = 0;
+         *         mark = -1;
+         *         return this;
+         *     }
+         * 读写切换
+         */
+        buffer.flip();
+```
+
+
+buffer:
+  四个核心属性
+  
+  ```
+  /**
+         * public final Buffer flip() {
+         *         limit = position;
+         *         position = 0;
+         *         mark = -1;
+         *         return this;
+         *     }
+         * 读写切换
+         */
+   buffer.flip();
+  ```
+  
+  
+  ```
+    mark <= position <= limit <= capacity
+    
+    private int mark = -1;
+    private int position = 0;
+    private int limit;
+    private int capacity;
+  ```
+  
+  ```
+  读时：
+       int mark :记录当前的position位置，mark如果在大于position或者limit时，会被丢弃
+       int position :是下一个读取操作的index
+       int limit :：第一个不应该读取或写入的数据的索引，即位于 limit 后的数据不可读写
+       int capacity :代表着缓冲区的大小
+    
+    写时：
+       int mark = -1;
+       int position = 0;
+       int limit;
+       int capacity;
+  ```
+  
+  ###**直接缓冲与间接缓冲**
+  
+  ```
+   DirectByteBuffer
+   直接在内存中分配数据存储空间（堆外内存）
+   不属于jvm的虚拟内存区域
+   效率更高
+   零拷贝到的概念便是来于于此
+   
+   HeapIntBuffer
+   在jvm分配的内存空间
+   受jvm的直接管理
+   在实际操作时，会将jvm堆中的数据拷贝到native内存中
+   
+  ```
+  
+  
+  
+  
+  
+  
+  ```
+   buffer.position(2);
+   buffer.limit(10);
+   buffer.slice();
+   
+   底层共享相同的数组
+  ```
+  
+  

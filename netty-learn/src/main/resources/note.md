@@ -1,4 +1,4 @@
-1、心跳感知
+````1、心跳感知
 在App与Netty连接的时候，如果App调成飞行模式,netty是无法感知的
 
 核心Handler:
@@ -197,11 +197,6 @@ buffer:
    在实际操作时，会将jvm堆中的数据拷贝到native内存中
    
   ```
-  
-  
-  
-  
-  
   
   ```
    buffer.position(2);

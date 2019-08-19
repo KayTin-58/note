@@ -1,5 +1,8 @@
 package zhang.netty.nio;
 
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -8,8 +11,8 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 服务器端
@@ -19,6 +22,7 @@ import java.util.Set;
  */
 public class MyServer
 {
+     public ConcurrentHashMap<String,SocketChannel> map = new ConcurrentHashMap(100);
 
 	public static void main(String args[]) throws Exception
 	{
@@ -36,6 +40,12 @@ public class MyServer
 
 	Selector selector = null;
 
+
+	/**
+	 * 服务
+	 * @param port
+	 * @throws Exception
+	 */
 	public MyServer(int port) throws Exception
 	{
 		// 打开服务器套接字通道
@@ -63,9 +73,11 @@ public class MyServer
 		while (true)
 		{
 			// 选择一组键，并且相应的通道已经打开
-			selector.select();
-			// 返回此选择器的已选择键集。
+			// It returns only after at least one channel is selected
+			int count = selector.select();
+			// 返回此选择器的已选择键集。Returns this selector's selected-key set.
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
+
 			Iterator<SelectionKey> iterator = selectionKeys.iterator();
 			while (iterator.hasNext())
 			{
@@ -91,7 +103,7 @@ public class MyServer
 		// 测试此键的通道是否已准备好接受新的套接字连接。
 		if (selectionKey.isAcceptable())
 		{
-			// 返回为之创建此键的通道。
+			// 返回为之创建此键的通道。 （事件）
 			server = (ServerSocketChannel) selectionKey.channel();
 
 			// 此方法返回的套接字通道（如果有）将处于阻塞模式。
@@ -101,6 +113,10 @@ public class MyServer
 			// 注册到selector，等待连接
 			client.register(selector, SelectionKey.OP_READ
 					| SelectionKey.OP_WRITE);
+            /**
+             * 记录客户端
+             */
+            map.put(RandomStringUtils.random(10),client);
 		}
 		else
 			if (selectionKey.isReadable())
@@ -112,7 +128,21 @@ public class MyServer
 				// 读取服务器发送来的数据到缓冲区中
 				client.read(receive);
 
-				System.out.println(new String(receive.array()));
+				String message = new String(receive.array());
+				System.out.println("客户端信息："+message);
+
+				//向所有的连接的客户端推送此条消息
+                for(Map.Entry<String,SocketChannel> object : map.entrySet()) {
+                    SocketChannel channel = object.getValue();
+					if(channel.isConnected()) {
+						ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+						byteBuffer.put(("来自于xx的消息："+message).getBytes());
+						byteBuffer.flip();
+						channel.write(byteBuffer);
+					}else {
+						//移除
+					}
+                }
 
 				selectionKey.interestOps(SelectionKey.OP_WRITE);
 			}

@@ -100,4 +100,9 @@ public class MapLearn {
         hashMap.put("word",3);
     }
 
+    static  String hh(String a,String b,String c,Integer g) {
+
+        return null;
+    }
+
 }

@@ -4,8 +4,6 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
-import zhang.netty.wechat.packet.request.MessageRequestPacket;
-import zhang.netty.wechat.utils.LoginUtils;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;

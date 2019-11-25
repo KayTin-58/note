@@ -6,14 +6,14 @@ public interface Cpu {
     class Cpu650 implements Cpu {
         @Override
         public void run() {
-            //625 也厉害
+            // 625 也厉害
         }
     }
 
     class Cpu825 implements Cpu {
         @Override
         public void run() {
-            //825 处理更强劲
+            // 825 处理更强劲
         }
     }
 }

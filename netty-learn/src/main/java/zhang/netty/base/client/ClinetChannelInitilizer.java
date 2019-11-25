@@ -15,7 +15,7 @@ import zhang.netty.base.client.handler.StringClientHandler;
  * @author zb 2019/07/24 18:54
  */
 @SuppressWarnings("all")
-public class ClinetChannelInitilizer extends ChannelInitializer<NioSocketChannel>  {
+public class ClinetChannelInitilizer extends ChannelInitializer<NioSocketChannel> {
 
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {

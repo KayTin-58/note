@@ -9,7 +9,7 @@ public class StaffA implements Staff {
 
     @Override
     public Object excute(String command) {
-        System.out.println("员工A开始执行："+command);
+        System.out.println("员工A开始执行：" + command);
         return null;
     }
 }

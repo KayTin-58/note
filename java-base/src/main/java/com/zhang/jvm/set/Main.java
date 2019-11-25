@@ -10,6 +10,6 @@ import java.util.Set;
  */
 public class Main {
     public static void main(String[] args) {
-        Set  set = new HashSet();
+        Set set = new HashSet();
     }
 }

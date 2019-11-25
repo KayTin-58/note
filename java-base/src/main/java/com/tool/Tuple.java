@@ -10,7 +10,7 @@ import lombok.Data;
  * @author KayTin 2018/06/07 13:48
  */
 @Data
-public class Tuple<A,B> {
+public class Tuple<A, B> {
     private A first;
     private B second;
 }

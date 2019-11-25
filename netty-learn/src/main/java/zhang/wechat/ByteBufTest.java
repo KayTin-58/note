@@ -15,7 +15,7 @@ public class ByteBufTest {
         print("allocate ByteBuf(9, 100)", buffer);
 
         // write 方法改变写指针，写完之后写指针未到 capacity 的时候，buffer 仍然可写
-        buffer.writeBytes(new byte[]{1, 2, 3, 4});
+        buffer.writeBytes(new byte[] {1, 2, 3, 4});
         print("writeBytes(1,2,3,4)", buffer);
 
         // write 方法改变写指针，写完之后写指针未到 capacity 的时候，buffer 仍然可写, 写完 int 类型之后，写指针增加4
@@ -23,11 +23,11 @@ public class ByteBufTest {
         print("writeInt(12)", buffer);
 
         // write 方法改变写指针, 写完之后写指针等于 capacity 的时候，buffer 不可写
-        buffer.writeBytes(new byte[]{5});
+        buffer.writeBytes(new byte[] {5});
         print("writeBytes(5)", buffer);
 
         // write 方法改变写指针，写的时候发现 buffer 不可写则开始扩容，扩容之后 capacity 随即改变
-        buffer.writeBytes(new byte[]{6});
+        buffer.writeBytes(new byte[] {6});
         print("writeBytes(6)", buffer);
 
         // get 方法不改变读写指针

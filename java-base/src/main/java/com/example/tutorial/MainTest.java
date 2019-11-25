@@ -12,9 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MainTest {
     public static void main(String[] args) {
-        AddressBookProtos.AddressBook addressBook = AddressBookProtos.AddressBook.newBuilder()
-                .setField(null, "dasas")
-                .build();
+        AddressBookProtos.AddressBook addressBook =
+                        AddressBookProtos.AddressBook.newBuilder().setField(null, "dasas").build();
 
         byte[] bytes = addressBook.toByteArray();
 

@@ -37,10 +37,6 @@ public class PayStatues {
 
     @Override
     public String toString() {
-        return "PayStatues{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", orderId='" + orderId + '\'' +
-                '}';
+        return "PayStatues{" + "code=" + code + ", msg='" + msg + '\'' + ", orderId='" + orderId + '\'' + '}';
     }
 }

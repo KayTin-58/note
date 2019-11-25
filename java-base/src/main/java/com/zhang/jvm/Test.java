@@ -20,9 +20,10 @@ class SingleTon {
     }
 
 
-    /*private static class SingleTonHandler{
-        private static final SingleTon INSTANCE= new SingleTon();
-    }*/
+    /*
+     * private static class SingleTonHandler{ private static final SingleTon INSTANCE= new SingleTon();
+     * }
+     */
 
 
 
@@ -32,7 +33,9 @@ class SingleTon {
 }
 
 
-  public class Test {
+
+
+public class Test {
     public static void main(String[] args) {
         SingleTon singleTon = SingleTon.getInstance();
         System.out.println("count1=" + singleTon.count1);

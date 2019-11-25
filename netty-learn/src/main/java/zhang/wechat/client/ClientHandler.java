@@ -22,18 +22,17 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        /*log.info("客户端开始登陆！");
-        // 创建登录对象
-        LoginRequestPacket loginRequestPacket = LoginRequestPacket.builder().build();
-        loginRequestPacket.setUserId(UUID.randomUUID().toString());
-        loginRequestPacket.setUserName("flash");
-        loginRequestPacket.setUserPassword("pwd");
-
-        ByteBuf buffer = PacketCodec.INSTANCE.encode(ctx.alloc(), loginRequestPacket);
-        *//**
-         * 发送数据
-         *//*
-        ctx.channel().writeAndFlush(buffer);*/
+        /*
+         * log.info("客户端开始登陆！"); // 创建登录对象 LoginRequestPacket loginRequestPacket =
+         * LoginRequestPacket.builder().build(); loginRequestPacket.setUserId(UUID.randomUUID().toString());
+         * loginRequestPacket.setUserName("flash"); loginRequestPacket.setUserPassword("pwd");
+         * 
+         * ByteBuf buffer = PacketCodec.INSTANCE.encode(ctx.alloc(), loginRequestPacket);
+         *//**
+            * 发送数据
+            *//*
+               * ctx.channel().writeAndFlush(buffer);
+               */
 
     }
 
@@ -49,9 +48,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             } else {
                 log.info("服务端响应：登陆失败！");
             }
-        }else if(packet.getCommand().equals(Command.MESSAGE_RESPONSE )) {
-            MessageResponsePacket message = (MessageResponsePacket)packet;
-            log.info("客户端收到服务端响应：---->"+message.getMessage());
+        } else if (packet.getCommand().equals(Command.MESSAGE_RESPONSE)) {
+            MessageResponsePacket message = (MessageResponsePacket) packet;
+            log.info("客户端收到服务端响应：---->" + message.getMessage());
         }
 
 

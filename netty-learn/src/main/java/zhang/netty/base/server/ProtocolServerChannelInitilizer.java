@@ -22,11 +22,11 @@ public class ProtocolServerChannelInitilizer extends ChannelInitializer<NioSocke
     protected void initChannel(NioSocketChannel ch) throws Exception {
         ChannelPipeline channelPipeline = ch.pipeline();
         channelPipeline.addLast(new ProtobufVarint32FrameDecoder());
-        //channelPipeline.addLast(new ProtobufDecoder(Persons.Person.getDefaultInstance()));
+        // channelPipeline.addLast(new ProtobufDecoder(Persons.Person.getDefaultInstance()));
         channelPipeline.addLast(new ProtobufDecoder(Messages.ChatMsg.getDefaultInstance()));
         channelPipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         channelPipeline.addLast(new ProtobufEncoder());
-        //channelPipeline.addLast(new MyProtoBufServerHandler());
+        // channelPipeline.addLast(new MyProtoBufServerHandler());
         channelPipeline.addLast(new MessageServerHandler());
     }
 }

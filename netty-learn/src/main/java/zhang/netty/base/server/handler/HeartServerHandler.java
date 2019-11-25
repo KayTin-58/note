@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HeartServerHandler extends ChannelInboundHandlerAdapter {
     /**
      * 用户事件触发
+     * 
      * @param ctx
      * @param evt
      * @throws Exception
@@ -22,23 +23,23 @@ public class HeartServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         log.info("============userEventTriggered================");
-        if(evt instanceof IdleStateEvent) {
-            IdleStateEvent stateEvent = (IdleStateEvent)evt;
+        if (evt instanceof IdleStateEvent) {
+            IdleStateEvent stateEvent = (IdleStateEvent) evt;
             IdleState idleState = stateEvent.state();
             String evtType = null;
             switch (idleState) {
                 case READER_IDLE:
-                    evtType ="读空闲";
+                    evtType = "读空闲";
                     break;
                 case WRITER_IDLE:
-                    evtType ="写空闲";
+                    evtType = "写空闲";
                     break;
                 case ALL_IDLE:
-                    evtType ="读写空闲";
+                    evtType = "读写空闲";
                     break;
             }
 
-            System.out.println("{心跳检测：}"+evtType);
+            System.out.println("{心跳检测：}" + evtType);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.zhang.Thread_Topic;
+package com.zhang.Thread_Topic.interrupted;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -7,22 +7,22 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author zb 2019/06/25 17:49
  */
-public class Interrupted01 {
+public class Interrupted03 {
 
     public static void main(String[] args) {
-         WorkThread workThread = new WorkThread();
-         Thread thread = new Thread(workThread,"WorkThread");
-         thread.start();
-            try {
-                Thread.sleep(10);
+        WorkThread workThread = new WorkThread();
+        Thread thread = new Thread(workThread, "WorkThread");
+        thread.start();
+        try {
+            Thread.sleep(10);
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                System.out.println("异常");
-            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.out.println("异常");
+        }
 
         workThread.cancel();
-        System.out.println("thread status:"+ thread.getState());
+        System.out.println("thread status:" + thread.getState());
         // 休眠1s，再看目标线程的状态
         try {
             Thread.sleep(1000);
@@ -38,14 +38,15 @@ public class Interrupted01 {
 
 
         private AtomicInteger i = new AtomicInteger();
-        public  volatile boolean flag = true;
+        public volatile boolean flag = true;
+
         @Override
         public void run() {
-            //双重支持&& !Thread.currentThread().isInterrupted()
+            // 双重支持&& !Thread.currentThread().isInterrupted()
 
-            while(flag && !Thread.currentThread().isInterrupted()) {
+            while (flag && !Thread.currentThread().isInterrupted()) {
                 i.getAndAdd(1);
-                System.out.println("flag:"+flag+";"+"i:"+i.get());
+                System.out.println("flag:" + flag + ";" + "i:" + i.get());
             }
         }
 

@@ -19,8 +19,7 @@ public class Person implements Serializable {
     }
 
 
-    public Person() {
-    }
+    public Person() {}
 
     public String getName() {
         return name;
@@ -48,10 +47,6 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", addre='" + addre + '\'' +
-                ", age=" + age +
-                '}';
+        return "Person{" + "name='" + name + '\'' + ", addre='" + addre + '\'' + ", age=" + age + '}';
     }
 }

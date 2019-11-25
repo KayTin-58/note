@@ -9,7 +9,7 @@ public interface Screen {
 
         @Override
         public void size() {
-            //5寸
+            // 5寸
         }
     }
 
@@ -17,7 +17,7 @@ public interface Screen {
 
         @Override
         public void size() {
-            //6寸
+            // 6寸
         }
     }
 }

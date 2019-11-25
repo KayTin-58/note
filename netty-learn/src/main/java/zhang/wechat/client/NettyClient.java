@@ -31,24 +31,20 @@ public class NettyClient {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap
-                .group(workerGroup)
-                .channel(NioSocketChannel.class)
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
-                .option(ChannelOption.SO_KEEPALIVE, true)
-                .option(ChannelOption.TCP_NODELAY, true)
-                .handler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    public void initChannel(SocketChannel ch) {
-                        //ch.pipeline().addLast(new LifeCyCleTestHandler());
-                        ch.pipeline().addLast(new Spliter());
-                        ch.pipeline().addLast(new PacketDecode());
-                        ch.pipeline().addLast(new LoginClientHandler());
-                        ch.pipeline().addLast(new MessageClientHandler());
-                        ch.pipeline().addLast(new PacketEncoder());
+        bootstrap.group(workerGroup).channel(NioSocketChannel.class).option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
+                        .option(ChannelOption.SO_KEEPALIVE, true).option(ChannelOption.TCP_NODELAY, true)
+                        .handler(new ChannelInitializer<SocketChannel>() {
+                            @Override
+                            public void initChannel(SocketChannel ch) {
+                                // ch.pipeline().addLast(new LifeCyCleTestHandler());
+                                ch.pipeline().addLast(new Spliter());
+                                ch.pipeline().addLast(new PacketDecode());
+                                ch.pipeline().addLast(new LoginClientHandler());
+                                ch.pipeline().addLast(new MessageClientHandler());
+                                ch.pipeline().addLast(new PacketEncoder());
 
-                    }
-                });
+                            }
+                        });
 
         connect(bootstrap, HOST, PORT, MAX_RETRY);
     }
@@ -68,8 +64,8 @@ public class NettyClient {
                 // 本次重连的间隔
                 int delay = 1 << order;
                 System.err.println(new Date() + ": 连接失败，第" + order + "次重连……");
-                bootstrap.config().group().schedule(() -> connect(bootstrap, host, port, retry - 1), delay, TimeUnit
-                        .SECONDS);
+                bootstrap.config().group().schedule(() -> connect(bootstrap, host, port, retry - 1), delay,
+                                TimeUnit.SECONDS);
             }
         });
     }

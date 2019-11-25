@@ -15,7 +15,8 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
-        int a = Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
+        int a = Math.max(1,
+                        SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
         System.out.println(a);
 
         HashMap hashMap = new HashMap();

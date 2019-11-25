@@ -17,24 +17,24 @@ public class TextWebSocketChannelServerHandler extends SimpleChannelInboundHandl
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
-            log.info("{server:}"+msg.text());
-            ctx.writeAndFlush(new TextWebSocketFrame(msg.text()+":"+ LocalDateTime.now()));
+        log.info("{server:}" + msg.text());
+        ctx.writeAndFlush(new TextWebSocketFrame(msg.text() + ":" + LocalDateTime.now()));
     }
 
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("--channelActive--："+ctx.channel().id().asLongText());
+        log.info("--channelActive--：" + ctx.channel().id().asLongText());
     }
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        log.info("--handlerAdded--:"+ctx.channel().id().asLongText());
+        log.info("--handlerAdded--:" + ctx.channel().id().asLongText());
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        log.info("--handlerRemoved--:"+ctx.channel().id().asLongText());
+        log.info("--handlerRemoved--:" + ctx.channel().id().asLongText());
     }
 
 }

@@ -17,7 +17,7 @@ public class Main {
         test(person);
         System.out.println(person);
 
-        System.out.println(String.format(TYPE_OF_DATA,"varchar", 36));
+        System.out.println(String.format(TYPE_OF_DATA, "varchar", 36));
     }
 
 

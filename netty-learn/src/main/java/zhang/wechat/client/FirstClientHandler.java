@@ -8,18 +8,17 @@ import java.nio.charset.Charset;
 import java.util.Date;
 
 /**
- * @author chao.yu
- * chao.yu@dianping.com
+ * @author chao.yu chao.yu@dianping.com
  * @date 2018/08/04 06:23.
  */
 public class FirstClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-            System.out.println(new Date() + ": 客户端写出数据");
-            // 1.获取数据
-            ByteBuf buffer = getByteBuf(ctx);
-            // 2.写数据
-            ctx.channel().writeAndFlush(buffer);
+        System.out.println(new Date() + ": 客户端写出数据");
+        // 1.获取数据
+        ByteBuf buffer = getByteBuf(ctx);
+        // 2.写数据
+        ctx.channel().writeAndFlush(buffer);
 
     }
 

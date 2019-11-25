@@ -7,6 +7,6 @@ public class UserDao implements IUserDao {
 
     @Override
     public void save() {
-      System.out.println("被代理对象的方法体执行！");
+        System.out.println("被代理对象的方法体执行！");
     }
 }

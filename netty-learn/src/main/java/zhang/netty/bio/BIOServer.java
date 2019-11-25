@@ -14,7 +14,7 @@ import java.net.Socket;
 @Slf4j
 public class BIOServer {
 
-    private static final Integer port = 7777;
+    private static final Integer PORT = 7777;
 
     /**
      * 单列模式初始化
@@ -25,7 +25,7 @@ public class BIOServer {
         public static ServerSocket INIT() {
             if (INSTANCE == null) {
                 try {
-                    INSTANCE = new ServerSocket(port);
+                    INSTANCE = new ServerSocket(PORT);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -37,7 +37,7 @@ public class BIOServer {
 
     public static void start() {
         ServerSocket serverSocket = SingletonInstance.INIT();
-        log.info("服务端已经启动，端口号为：", port);
+        log.info("服务端已经启动，端口号为：", PORT);
         try {
             /**
              * Acceptor :接收新的Socket连接
@@ -55,7 +55,7 @@ public class BIOServer {
                          * 处理消息
                          */
                         while (true) {
-                            //自旋
+                            // 自旋
                             String msg;
                             if ((msg = bReader.readLine()) != null) {
                                 bWriter.write("服务端接受到消息并处理,消息内容：" + msg);

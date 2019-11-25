@@ -23,13 +23,14 @@ public class ServerChannelInitilizer extends ChannelInitializer<io.netty.channel
     protected void initChannel(NioSocketChannel ch) throws Exception {
         System.out.println("==zhang.netty.base.server.ServerChannelInitilizer.initChannel==");
         ChannelPipeline channelPipeline = ch.pipeline();
-        channelPipeline.addLast("HttpServerCodec",new HttpServerCodec());
-        channelPipeline.addLast("HttpServerCodec",new ChunkedWriteHandler());
-        channelPipeline.addLast("HttpServerCodec",new HttpObjectAggregator(8192));
-        /*channelPipeline.addLast("HttpHandler",new HttpHandler());
-        channelPipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-        channelPipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));*/
-        channelPipeline.addLast(new IdleStateHandler(5,7,10));
+        channelPipeline.addLast("HttpServerCodec", new HttpServerCodec());
+        channelPipeline.addLast("HttpServerCodec", new ChunkedWriteHandler());
+        channelPipeline.addLast("HttpServerCodec", new HttpObjectAggregator(8192));
+        /*
+         * channelPipeline.addLast("HttpHandler",new HttpHandler()); channelPipeline.addLast(new
+         * StringDecoder(CharsetUtil.UTF_8)); channelPipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+         */
+        channelPipeline.addLast(new IdleStateHandler(5, 7, 10));
         channelPipeline.addLast(new HeartServerHandler());
     }
 }

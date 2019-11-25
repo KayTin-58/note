@@ -19,6 +19,7 @@ public abstract class Packet implements Command {
 
     /**
      * 指令
+     * 
      * @return
      */
     public abstract Byte getCommand();

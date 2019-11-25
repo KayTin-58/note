@@ -21,7 +21,7 @@ public class LoginServerHandler extends SimpleChannelInboundHandler<LoginRequest
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket requestPacket) throws Exception {
-        log.info("{server:}"+"【收到客户端的登录请求】");
+        log.info("{server:}" + "【收到客户端的登录请求】");
         LoginResponsePacket loginResponse = new LoginResponsePacket();
         loginResponse.setVersion(requestPacket.getVersion());
         if (valid(requestPacket)) {
@@ -30,16 +30,16 @@ public class LoginServerHandler extends SimpleChannelInboundHandler<LoginRequest
              */
             LoginUtils.markLogin(ctx.channel());
             loginResponse.setSuccess(true);
-            log.info("{server:}"+"【客户端请求登录，密码验证通过】");
+            log.info("{server:}" + "【客户端请求登录，密码验证通过】");
             loginResponse.setReason(new Date() + "服务端验证通过！");
             /**
              * 装入容器
              */
-            LoginUtils.bindSession(new Session(requestPacket.getUserId(),requestPacket.getUserName()),ctx.channel());
+            LoginUtils.bindSession(new Session(requestPacket.getUserId(), requestPacket.getUserName()), ctx.channel());
         } else {
             loginResponse.setSuccess(false);
             loginResponse.setReason(new Date() + "账号密码验证未通过！");
-            log.info("{server:}"+"【登陆失败！】");
+            log.info("{server:}" + "【登陆失败！】");
         }
         ctx.channel().writeAndFlush(loginResponse);
     }
@@ -54,6 +54,7 @@ public class LoginServerHandler extends SimpleChannelInboundHandler<LoginRequest
 
     /**
      * 从数据库读取数据判断
+     * 
      * @param requestPacket
      * @return
      */

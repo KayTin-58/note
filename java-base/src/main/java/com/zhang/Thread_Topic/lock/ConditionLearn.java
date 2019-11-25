@@ -34,28 +34,13 @@ public class ConditionLearn {
                  *
                  * Block until signalled or interrupted.
                  *
-                 *  public final void await() throws InterruptedException {
-                 *             //中断检查
-                 *             if (Thread.interrupted())
-                 *                 throw new InterruptedException();
-                 *                 //加入到等待队列
-                 *             Node node = addConditionWaiter();
-                 *             //释放锁
-                 *             long savedState = fullyRelease(node);
-                 *             int interruptMode = 0;
-                 *             while (!isOnSyncQueue(node)) {
-                 *             //阻塞当前线程
-                 *                 LockSupport.park(this);
-                 *                 if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
-                 *                     break;
-                 *             }
-                 *             if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
-                 *                 interruptMode = REINTERRUPT;
-                 *             if (node.nextWaiter != null) // clean up if cancelled
-                 *                 unlinkCancelledWaiters();
-                 *             if (interruptMode != 0)
-                 *                 reportInterruptAfterWait(interruptMode);
-                 *         }
+                 * public final void await() throws InterruptedException { //中断检查 if (Thread.interrupted()) throw
+                 * new InterruptedException(); //加入到等待队列 Node node = addConditionWaiter(); //释放锁 long savedState =
+                 * fullyRelease(node); int interruptMode = 0; while (!isOnSyncQueue(node)) { //阻塞当前线程
+                 * LockSupport.park(this); if ((interruptMode = checkInterruptWhileWaiting(node)) != 0) break; } if
+                 * (acquireQueued(node, savedState) && interruptMode != THROW_IE) interruptMode = REINTERRUPT; if
+                 * (node.nextWaiter != null) // clean up if cancelled unlinkCancelledWaiters(); if (interruptMode !=
+                 * 0) reportInterruptAfterWait(interruptMode); }
                  */
                 condition.await();
             }
@@ -71,14 +56,14 @@ public class ConditionLearn {
     static void get() {
         try {
             reentrantLock.lock();
-            if(off == true) {
+            if (off == true) {
                 condition.await();
             }
             System.out.println("消费！");
             off = true;
             condition.signalAll();
         } catch (InterruptedException e) {
-        }finally {
+        } finally {
             reentrantLock.unlock();
         }
     }

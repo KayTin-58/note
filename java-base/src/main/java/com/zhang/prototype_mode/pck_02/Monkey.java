@@ -12,7 +12,7 @@ import java.io.*;
  */
 @Setter
 @Getter
-public class Monkey implements Cloneable,Serializable{
+public class Monkey implements Cloneable, Serializable {
     private String name;
     private Double weight;
     private Double height;
@@ -27,7 +27,7 @@ public class Monkey implements Cloneable,Serializable{
 
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(bais);
-            Monkey monkey = (Monkey)ois.readObject();
+            Monkey monkey = (Monkey) ois.readObject();
             monkey.jinGuBang = new JinGuBang();
             return monkey;
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.zhang.Thread_Topic.pck_02;
+package com.zhang.Thread_Topic.interrupted;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,11 +10,12 @@ import java.util.concurrent.TimeUnit;
 public class Interrupted02 {
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
-            while (true) {
+            while (Thread.currentThread().isInterrupted()) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
+                    System.out.println("-------");
                 } catch (InterruptedException e) {
-                    //这个异常也可以导致中断复位
+                    // 这个异常也可以导致中断复位
                     e.printStackTrace();
                 }
             }
@@ -22,12 +23,12 @@ public class Interrupted02 {
 
         thread.start();
         thread.interrupt();
-        System.out.println("之前："+thread.isInterrupted());
+        System.out.println("之前：" + thread.isInterrupted());
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("之后："+thread.isInterrupted());
+        System.out.println("之后：" + thread.isInterrupted());
     }
 }

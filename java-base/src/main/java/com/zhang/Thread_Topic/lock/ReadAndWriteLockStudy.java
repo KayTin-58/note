@@ -10,28 +10,28 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author zb 2019/07/02 19:34
  */
 public class ReadAndWriteLockStudy {
-    private static  Integer i = 0;
+    private static Integer i = 0;
 
-    static ReentrantReadWriteLock rwLock =new ReentrantReadWriteLock();
+    static ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
     static Lock r = rwLock.readLock();
     static Lock w = rwLock.writeLock();
-    public static void main(String[] args) {
-    }
+
+    public static void main(String[] args) {}
 
     public static int get() {
         r.lock();
-        try{
+        try {
             return i;
-        }finally {
-           r.unlock();
+        } finally {
+            r.unlock();
         }
     }
 
     public static void set() {
         w.lock();
-        try{
+        try {
             i++;
-        }finally {
+        } finally {
             w.unlock();
         }
     }

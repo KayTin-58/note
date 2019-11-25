@@ -15,15 +15,13 @@ public class MyProtoBufServerHandler extends SimpleChannelInboundHandler<Persons
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Persons.Person person) throws Exception {
-        log.info("服务端收到消息："+person.getEmail()+"\n"+person.getName());
+        log.info("服务端收到消息：" + person.getEmail() + "\n" + person.getName());
     }
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         log.info("===handlerAdded===");
     }
-
-
 
 
 

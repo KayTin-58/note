@@ -8,8 +8,8 @@ import java.io.Serializable;
  * @author zb 2019/07/22 10:25
  */
 public class Session implements Serializable {
-   private String userId;
-   private String userName;
+    private String userId;
+    private String userName;
 
     public Session(String userId, String userName) {
         this.userId = userId;
@@ -34,9 +34,6 @@ public class Session implements Serializable {
 
     @Override
     public String toString() {
-        return "Session{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                '}';
+        return "Session{" + "userId='" + userId + '\'' + ", userName='" + userName + '\'' + '}';
     }
 }

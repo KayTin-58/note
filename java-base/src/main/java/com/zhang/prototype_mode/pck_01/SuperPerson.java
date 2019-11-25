@@ -5,10 +5,10 @@ package com.zhang.prototype_mode.pck_01;
  *
  * @author zb 2019/05/19 17:31
  */
-public class SuperPerson implements Cloneable{
+public class SuperPerson implements Cloneable {
 
-   private String skill;
-   private Person person;
+    private String skill;
+    private Person person;
 
     public String getSkill() {
         return skill;

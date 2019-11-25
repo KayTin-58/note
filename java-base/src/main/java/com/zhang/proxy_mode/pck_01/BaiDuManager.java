@@ -9,6 +9,6 @@ public class BaiDuManager implements Manager {
 
     @Override
     public void approval(String name) {
-        System.out.println("百度总经理审批："+name);
+        System.out.println("百度总经理审批：" + name);
     }
 }

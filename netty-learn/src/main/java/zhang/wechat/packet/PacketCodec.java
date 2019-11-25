@@ -14,7 +14,7 @@ import zhang.wechat.serializer.fast.JSONSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
-//TODO 待调整
+// TODO 待调整
 
 /**
  * 解码/编码器
@@ -31,7 +31,7 @@ public class PacketCodec {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LoginRequestPacket.LOGIN_REQUEST, LoginRequestPacket.class);
         packetTypeMap.put(LoginResponsePacket.LOGIN_RESPONSE, LoginResponsePacket.class);
-        packetTypeMap.put(MessageRequestPacket.MESSAGE_REQUEST,MessageRequestPacket.class);
+        packetTypeMap.put(MessageRequestPacket.MESSAGE_REQUEST, MessageRequestPacket.class);
         packetTypeMap.put(MessageResponsePacket.MESSAGE_RESPONSE, MessageResponsePacket.class);
     }
 
@@ -41,11 +41,11 @@ public class PacketCodec {
         Serializer serializer = new JSONSerializer();
         byte[] bytes = serializer.serialize(packet);
         // 3. 实际编码过程
-        byteBuf.writeInt(MAGIC_NUMBER); //4
-        byteBuf.writeByte(packet.getVersion()); //1
-        byteBuf.writeByte(serializer.getSerializerAlgorithm()); //1
-        byteBuf.writeByte(packet.getCommand()); //1
-        byteBuf.writeInt(bytes.length); //4
+        byteBuf.writeInt(MAGIC_NUMBER); // 4
+        byteBuf.writeByte(packet.getVersion()); // 1
+        byteBuf.writeByte(serializer.getSerializerAlgorithm()); // 1
+        byteBuf.writeByte(packet.getCommand()); // 1
+        byteBuf.writeInt(bytes.length); // 4
         byteBuf.writeBytes(bytes);
     }
 
@@ -69,7 +69,7 @@ public class PacketCodec {
         byte[] bytes = new byte[length];
         byteBuf.readBytes(bytes);
 
-        log.info("command:"+command+";"+"serializeAlgorithm:"+serializeAlgorithm);
+        log.info("command:" + command + ";" + "serializeAlgorithm:" + serializeAlgorithm);
 
         Class<? extends Packet> requestType = getRequestType(command);
         Serializer serializer = getSerializer(serializeAlgorithm);

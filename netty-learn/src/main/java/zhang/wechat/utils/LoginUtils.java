@@ -32,29 +32,31 @@ public class LoginUtils {
 
 
     public static void bindSession(Session session, Channel channel) {
-        map.put(session.getUserId(),channel);
+        map.put(session.getUserId(), channel);
         channel.attr(AttributeEnum.SESSION.getAttributeKey()).set(session);
     }
 
 
     public static void unBindSession(Channel channel) {
-        if(hasLogin(channel)) {
+        if (hasLogin(channel)) {
             map.remove(getSession(channel).getUserId());
             channel.attr(AttributeEnum.SESSION.getAttributeKey()).set(null);
         }
     }
 
     /**
-     *通过Channel获取Session
+     * 通过Channel获取Session
+     * 
      * @param channel
      * @return
      */
     public static Session getSession(Channel channel) {
-        return (Session)channel.attr(AttributeEnum.SESSION.getAttributeKey()).get();
+        return (Session) channel.attr(AttributeEnum.SESSION.getAttributeKey()).get();
     }
 
     /**
      * 获取Channel
+     * 
      * @param userId
      * @return
      */

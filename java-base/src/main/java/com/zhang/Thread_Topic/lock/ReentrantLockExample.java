@@ -9,19 +9,43 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author zb 2019/06/25 15:05
  */
 public class ReentrantLockExample {
-    static  ReentrantLock reentrantLock =new ReentrantLock();
-
+    static ReentrantLock reentrantLock = new ReentrantLock();
 
 
 
     private String appName = "安卓";
+
     public static void main(String[] args) {
-        Condition condition = reentrantLock.newCondition();
+        // Condition condition = reentrantLock.newCondition();
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                sys();
+            }).start();
+        }
+
 
     }
 
+
+    public static void sys() {
+        reentrantLock.lock();
+        int i = 0;
+        while (true) {
+            try {
+                Thread.sleep(1000);
+                System.out.println(i++);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                reentrantLock.unlock();
+            }
+        }
+    }
+
+
+
     public void write(String name) {
-         reentrantLock.lock();
+        reentrantLock.lock();
         /**
          * 可重入获取锁
          */

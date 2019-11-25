@@ -39,10 +39,7 @@ public class CreateGroupResponsePacket extends Packet {
 
     @Override
     public String toString() {
-        return "CreateGroupResponsePacket{" +
-                "fromUser='" + fromUser + '\'' +
-                ", useridList='" + useridList + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+        return "CreateGroupResponsePacket{" + "fromUser='" + fromUser + '\'' + ", useridList='" + useridList + '\''
+                        + ", message='" + message + '\'' + '}';
     }
 }

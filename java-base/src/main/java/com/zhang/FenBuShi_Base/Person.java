@@ -11,8 +11,8 @@ public class Person implements Serializable {
 
 
     private String name;
-   private Integer id;
-   private String addre;
+    private Integer id;
+    private String addre;
 
     public String getName() {
         return name;

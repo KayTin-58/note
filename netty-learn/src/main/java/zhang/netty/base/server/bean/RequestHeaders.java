@@ -20,10 +20,7 @@ public class RequestHeaders {
 
     @Override
     public String toString() {
-        return "RequestHeaders{" +
-                "menthodName='" + menthodName + '\'' +
-                ", url='" + url + '\'' +
-                ", version='" + version + '\'' +
-                '}';
+        return "RequestHeaders{" + "menthodName='" + menthodName + '\'' + ", url='" + url + '\'' + ", version='"
+                        + version + '\'' + '}';
     }
 }

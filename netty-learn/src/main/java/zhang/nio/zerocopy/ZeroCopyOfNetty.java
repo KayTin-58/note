@@ -16,18 +16,15 @@ import org.jboss.netty.buffer.ChannelBuffers;
 public class ZeroCopyOfNetty {
     public static void main(String[] args) {
         /**
-         *    int readerIndex;
-         *    int writerIndex;
-         *    int markedReaderIndex;
-         *    int markedWriterIndex;
-         *    List<CompositeByteBuf.Component> components; // 所有子 byteBuf
+         * int readerIndex; int writerIndex; int markedReaderIndex; int markedWriterIndex;
+         * List<CompositeByteBuf.Component> components; // 所有子 byteBuf
          *
          */
         CompositeByteBuf compositeByteBuf = Unpooled.compositeBuffer();
 
 
         /**
-         * 返回虚拟  byteBuf
+         * 返回虚拟 byteBuf
          */
         ByteBuf byteBuf = compositeByteBuf.component(1);
 

@@ -21,10 +21,9 @@ public class LoginRequestPacket extends Packet {
         this.userPassword = userPassword;
     }
 
-    public LoginRequestPacket() {
-    }
+    public LoginRequestPacket() {}
 
-    private String  userId;
+    private String userId;
     private String userName;
     private String userPassword;
 

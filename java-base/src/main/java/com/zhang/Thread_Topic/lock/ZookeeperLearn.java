@@ -13,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
 public class ZookeeperLearn {
 
     private static ZooKeeper zk = null;
-    private String ROOT_LOCK = "/locks"; //定义根节点
+    private String ROOT_LOCK = "/locks"; // 定义根节点
 
     private static final String CMD = "/locks/onlyLock";
     /**
@@ -23,8 +23,7 @@ public class ZookeeperLearn {
 
     public static void main(String[] args) {
         try {
-            zk = new ZooKeeper("192.168.230.140:2181",
-                    4000, new Watcher() {
+            zk = new ZooKeeper("192.168.230.140:2181", 4000, new Watcher() {
                 @Override
                 public void process(WatchedEvent watchedEvent) {
                     Event.KeeperState state = watchedEvent.getState();
@@ -53,18 +52,20 @@ public class ZookeeperLearn {
 
 
             // 创建父节点
-            /*String result = zk.create("/testRoot", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                    CreateMode.PERSISTENT);*/
+            /*
+             * String result = zk.create("/testRoot", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
+             * CreateMode.PERSISTENT);
+             */
 
-            //System.out.println("result:"+result);
+            // System.out.println("result:"+result);
             System.out.println(zk.exists("/testRoot/children", false));
             System.out.println(zk.exists("/testRoot", false));
 
 
-           // System.out.println(result);
+            // System.out.println(result);
             // 创建子节点
-            zk.create("/testRoot/children", "children data".getBytes(),
-                    ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            zk.create("/testRoot/children", "children data".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                            CreateMode.PERSISTENT);
 
             // 获取节点洗信息
             byte[] data = zk.getData("/testRoot", false, null);
@@ -76,7 +77,7 @@ public class ZookeeperLearn {
             byte[] data1 = zk.getData("/testRoot", false, null);
             System.out.println(new String(data1));
 
-            //判断节点是否存在
+            // 判断节点是否存在
             System.out.println(zk.exists("/testRoot/children", false));
             // 删除节点
             zk.delete("/testRoot/children", -1);

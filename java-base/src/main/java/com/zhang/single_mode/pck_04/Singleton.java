@@ -11,8 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Singleton {
     private Singleton singleton;
 
-    private Singleton() {
-    }
+    private Singleton() {}
 
     private static Map<String, Object> singletonMap = new ConcurrentHashMap<>();
 
@@ -22,14 +21,14 @@ public class Singleton {
         }
 
         if (singletonMap.get(name) == null) {
-            //这里是不安全的
+            // 这里是不安全的
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                //这里充分利用了
+                // 这里充分利用了
                 singletonMap.put(name, Singleton.class.newInstance());
             } catch (InstantiationException e) {
                 e.printStackTrace();

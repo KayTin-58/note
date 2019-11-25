@@ -1,4 +1,5 @@
 package com.tool;
+
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -40,11 +41,11 @@ public class Main {
         tuple1.setSecond("广州");
         values.add(tuple1);
 
-        System.out.println(SqlUtils.structureInsertSql(DataBaseType.HIVE,"TEST","test",values));
+        System.out.println(SqlUtils.structureInsertSql(DataBaseType.HIVE, "TEST", "test", values));
 
-        System.out.println(String.format(TYPE_OF_DATA,"int",3));
+        System.out.println(String.format(TYPE_OF_DATA, "int", 3));
 
-        String a =null;
+        String a = null;
         System.out.println(String.valueOf(a));
 
 
@@ -76,8 +77,8 @@ public class Main {
         par.add(column2);
 
 
-        System.out.println(SqlUtils.structureCreateSql(DataBaseType.HIVE,"Person",columns,true,par,null));
-        System.out.println(structureCreateSql("test",columns));
+        System.out.println(SqlUtils.structureCreateSql(DataBaseType.HIVE, "Person", columns, true, par, null));
+        System.out.println(structureCreateSql("test", columns));
 
     }
 
@@ -88,8 +89,8 @@ public class Main {
      * @param source 源字符串
      * @return 替换值
      */
-    public static  String replaceIfNull(String source) {
-        return StringUtils.isEmpty(source) ? "-99999":source;
+    public static String replaceIfNull(String source) {
+        return StringUtils.isEmpty(source) ? "-99999" : source;
     }
 
     public static String structureCreateSql(String tableName, List<Column> columns) {
@@ -107,12 +108,9 @@ public class Main {
                 if (SqlDataType.VARCHAR.getType().equals(typeOfData) || SqlDataType.CHAR.getType().equals(typeOfData)) {
                     typeOfData = String.format(TYPE_OF_DATA, column.getTypeName(), column.getColSize());
                 }
-                sql.append(String.format(MYSQL_COLUMN_BASE,
-                        column.getColName(),
-                        typeOfData,
-                        DOUBLE_QUOTES + replaceIfNull(column.getColDef()) + DOUBLE_QUOTES,
-                        column.getNullAble(),
-                        APO_STROPHE + column.getRemarks() + APO_STROPHE));
+                sql.append(String.format(MYSQL_COLUMN_BASE, column.getColName(), typeOfData,
+                                DOUBLE_QUOTES + replaceIfNull(column.getColDef()) + DOUBLE_QUOTES, column.getNullAble(),
+                                APO_STROPHE + column.getRemarks() + APO_STROPHE));
                 if (i != size - 1) {
                     sql.append(",");
                 }

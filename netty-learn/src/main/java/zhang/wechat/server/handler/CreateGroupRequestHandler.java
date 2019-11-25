@@ -10,7 +10,6 @@ import zhang.wechat.packet.request.CreateGroupRequestPacket;
 import zhang.wechat.packet.response.CreateGroupResponsePacket;
 import zhang.wechat.utils.LoginUtils;
 
-
 import java.util.List;
 import java.util.UUID;
 
@@ -22,12 +21,13 @@ import java.util.UUID;
 public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<CreateGroupRequestPacket> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket createGroupRequestPacket) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket createGroupRequestPacket)
+                    throws Exception {
         List<String> useridList = createGroupRequestPacket.getUseridList();
-        ChannelGroup channels =  new DefaultChannelGroup(ctx.executor());
-        for(String userid:useridList) {
+        ChannelGroup channels = new DefaultChannelGroup(ctx.executor());
+        for (String userid : useridList) {
             Channel channel = LoginUtils.getChannel(userid);
-            if(channel !=null && LoginUtils.hasLogin(channel)) {
+            if (channel != null && LoginUtils.hasLogin(channel)) {
                 channels.add(channel);
             }
         }

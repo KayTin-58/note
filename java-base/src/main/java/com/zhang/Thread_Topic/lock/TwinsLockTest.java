@@ -8,13 +8,13 @@ public class TwinsLockTest {
     public static void main(String[] args) {
 
 
-// 启动10个线程
+        // 启动10个线程
         for (int i = 0; i < 10; i++) {
             Worker w = new Worker(lock);
             w.setDaemon(true);
             w.start();
         }
-// 每隔1秒换行
+        // 每隔1秒换行
         for (int i = 0; i < 10; i++) {
             try {
                 Thread.sleep(1000);
@@ -28,9 +28,11 @@ public class TwinsLockTest {
 
     static class Worker extends Thread {
         TwinsLock lock = null;
+
         public Worker(TwinsLock lock) {
             this.lock = lock;
         }
+
         @Override
         public void run() {
             while (true) {

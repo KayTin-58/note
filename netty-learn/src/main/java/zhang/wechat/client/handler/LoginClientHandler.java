@@ -23,21 +23,21 @@ public class LoginClientHandler extends SimpleChannelInboundHandler<LoginRespons
 
     /**
      * 读取数据
+     * 
      * @param resp
      * @throws Exception
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket resp) throws Exception {
         if (resp.isSuccess()) {
-            log.info("{clien:}"+"【服务端响应：登陆成功！】");
+            log.info("{clien:}" + "【服务端响应：登陆成功！】");
             /**
-             * 登陆成功标记
-             * 写入数据库
+             * 登陆成功标记 写入数据库
              */
             LoginUtils.markLogin(ctx.channel());
             startConsoleThread(ctx.channel());
         } else {
-            log.info("{clien:}"+"【服务端响应：登陆失败！】");
+            log.info("{clien:}" + "【服务端响应：登陆失败！】");
         }
     }
 
@@ -59,6 +59,7 @@ public class LoginClientHandler extends SimpleChannelInboundHandler<LoginRespons
 
     /**
      * 写入数据
+     * 
      * @param ctx
      * @throws Exception
      */

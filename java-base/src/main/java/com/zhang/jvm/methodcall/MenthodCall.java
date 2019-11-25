@@ -1,18 +1,11 @@
 package com.zhang.jvm.methodcall;
 
 /**
- * description:
- * 1、弄清楚几种分派的差别
- * a\ 静态分派：在代码运行前已经确定，代码运行期不可以改变（方法重载）
- * b\ 动态分派：在代码运行期是可以改变的，也是多态的根本（方法重写）
+ * description: 1、弄清楚几种分派的差别 a\ 静态分派：在代码运行前已经确定，代码运行期不可以改变（方法重载） b\ 动态分派：在代码运行期是可以改变的，也是多态的根本（方法重写）
  * c\ 解析：类的静态方法、构造方法、私有方法
  *
- * 方法的重载是由静态类型决定的
- *         （静态类型）
- *         Human human01 = new Man();
- *         Human human02 = new Woman();
- *         main.sayHello(human01);
- *         main.sayHello(human02);
+ * 方法的重载是由静态类型决定的 （静态类型） Human human01 = new Man(); Human human02 = new Woman();
+ * main.sayHello(human01); main.sayHello(human02);
  *
  *
  * @author zb 2019/07/12 11:54
@@ -69,12 +62,7 @@ public class MenthodCall {
         /**
          * 输出结果：
          *
-         * Hello man!
-         * hum,call
-         * Hello woman!
-         * hum,call
-         * Hello man!
-         * Hello woman!
+         * Hello man! hum,call Hello woman! hum,call Hello man! Hello woman!
          */
 
     }

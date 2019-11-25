@@ -19,8 +19,7 @@ public class MyClassLoader extends ClassLoader {
         super(parent);
     }
 
-    public MyClassLoader() {
-    }
+    public MyClassLoader() {}
 
     /**
      * 核心
@@ -31,10 +30,11 @@ public class MyClassLoader extends ClassLoader {
      */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        File file = new File("D:\\IDEProject\\repository\\note\\src\\main\\java\\com\\zhang\\jvm\\loadclass\\Person.class");
+        File file = new File(
+                        "D:\\IDEProject\\repository\\note\\src\\main\\java\\com\\zhang\\jvm\\loadclass\\Person.class");
         try {
             byte[] bytes = getClassBytes(file);
-            Class<?> c = this.defineClass("Person",bytes,0,bytes.length);
+            Class<?> c = this.defineClass("Person", bytes, 0, bytes.length);
             return c;
         } catch (Exception e) {
             e.printStackTrace();

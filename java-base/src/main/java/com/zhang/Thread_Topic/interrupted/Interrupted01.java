@@ -1,4 +1,4 @@
-package com.zhang.Thread_Topic.pck_02;
+package com.zhang.Thread_Topic.interrupted;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,10 +12,10 @@ public class Interrupted01 {
         Thread thread = new Thread(() -> {
             while (true) {
                 boolean in = Thread.currentThread().isInterrupted();
-                if(in) {
-                    System.out.println("之前："+in);
-                    Thread.interrupted();//复位
-                    System.out.println("之后："+Thread.currentThread().isInterrupted());
+                if (in) {
+                    System.out.println("之前：" + in);
+                    Thread.interrupted();// 复位
+                    System.out.println("之后：" + Thread.currentThread().isInterrupted());
                 }
             }
         });

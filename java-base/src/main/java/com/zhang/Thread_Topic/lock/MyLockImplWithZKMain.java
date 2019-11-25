@@ -14,38 +14,36 @@ public class MyLockImplWithZKMain {
 
         pro();
 
-      /*  new Thread(() -> {
-            while (true) {
-                cons();
-            }
-        }).start();*/
+        /*
+         * new Thread(() -> { while (true) { cons(); } }).start();
+         */
     }
 
     static void pro() {
-       zkLock.lock();
-           try {
-               if(count % 2 ==0) {
-                   Thread.sleep(3000);
-                   count++;
-                   System.out.println("【pro】"+count);
-               }
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }finally {
-               zkLock.unlock();
-           }
+        zkLock.lock();
+        try {
+            if (count % 2 == 0) {
+                Thread.sleep(3000);
+                count++;
+                System.out.println("【pro】" + count);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            zkLock.unlock();
+        }
     }
 
     static void cons() {
         zkLock.lock();
-           try {
-               Thread.sleep(3000);
-               count++;
-               System.out.println("【cons】"+count);
-           } catch (Exception e) {
-               e.printStackTrace();
-           }finally {
-               zkLock.unlock();
-           }
+        try {
+            Thread.sleep(3000);
+            count++;
+            System.out.println("【cons】" + count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            zkLock.unlock();
+        }
     }
 }

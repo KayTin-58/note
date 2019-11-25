@@ -16,7 +16,8 @@ import zhang.wechat.packet.PacketCodec;
 public class PacketEncoder extends MessageToByteEncoder<Packet> {
 
     @Override
-    protected void encode(ChannelHandlerContext channelHandlerContext, Packet packet, ByteBuf byteBuf) throws Exception {
-        PacketCodec.INSTANCE.encode(byteBuf,packet);
+    protected void encode(ChannelHandlerContext channelHandlerContext, Packet packet, ByteBuf byteBuf)
+                    throws Exception {
+        PacketCodec.INSTANCE.encode(byteBuf, packet);
     }
 }

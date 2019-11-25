@@ -18,8 +18,7 @@ public class PrinProcess extends Thread implements RequestProcess {
         this.process = process;
     }
 
-    public PrinProcess() {
-    }
+    public PrinProcess() {}
 
     @Override
     public void run() {
@@ -30,9 +29,7 @@ public class PrinProcess extends Thread implements RequestProcess {
                  * 执行真正的消息处理逻辑
                  */
                 Thread.sleep(100);
-                Optional.ofNullable(this.process).map(o ->
-                        o.processReq(request)
-                );
+                Optional.ofNullable(this.process).map(o -> o.processReq(request));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

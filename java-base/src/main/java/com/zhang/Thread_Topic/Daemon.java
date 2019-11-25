@@ -8,11 +8,11 @@ package com.zhang.Thread_Topic;
 public class Daemon {
 
 
-    public static void main(String[] args) throws Exception{
-        Thread thread = new Thread(new DaemonRun(),"DaemonRun");
+    public static void main(String[] args) throws Exception {
+        Thread thread = new Thread(new DaemonRun(), "DaemonRun");
         thread.setDaemon(true);
         thread.start();
-        //Thread.sleep(2000);
+        // Thread.sleep(2000);
     }
 
 
@@ -25,7 +25,7 @@ public class Daemon {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                //并不会被打印
+                // 并不会被打印
                 System.out.println("哈哈哈，守护线程打印测试！");
             }
         }

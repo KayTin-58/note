@@ -21,6 +21,6 @@ public class Main {
         }
 
         System.out.println(obj);
-        System.out.println(obj.getClass().getClassLoader());//打印出我们的自定义类加载器
+        System.out.println(obj.getClass().getClassLoader());// 打印出我们的自定义类加载器
     }
 }

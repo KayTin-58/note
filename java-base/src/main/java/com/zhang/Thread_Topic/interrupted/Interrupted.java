@@ -1,4 +1,4 @@
-package com.zhang.Thread_Topic.pck_02;
+package com.zhang.Thread_Topic.interrupted;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,13 +9,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class Interrupted {
 
-    public static  int i=0;
+    public static int i = 0;
+
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
-           while (!Thread.currentThread().isInterrupted()) {
-               i++;
-           }
-        },"Interrupted");
+            while (!Thread.currentThread().isInterrupted()) {
+                i++;
+            }
+        }, "Interrupted");
 
         thread.start();
         try {

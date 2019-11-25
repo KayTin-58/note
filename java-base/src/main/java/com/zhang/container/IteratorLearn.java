@@ -14,18 +14,18 @@ import java.util.Iterator;
  */
 public class IteratorLearn {
     public static void main(String[] args) {
-        Collection<User> users  = new ArrayList<User>() ;
-        users.add(new User("张三",28));
-        users.add(new User("李四",25));
-        users.add(new User("王五",31));
+        Collection<User> users = new ArrayList<User>();
+        users.add(new User("张三", 28));
+        users.add(new User("李四", 25));
+        users.add(new User("王五", 31));
         Iterator<User> itrUsers = users.iterator();
 
-        while(itrUsers.hasNext()){
+        while (itrUsers.hasNext()) {
             System.out.println("aaaa");
-            User user = (User)itrUsers.next();
-            if("张三".equals(user.getName())){
+            User user = (User) itrUsers.next();
+            if ("张三".equals(user.getName())) {
                 users.remove(user);
-                //itrUsers.remove();
+                // itrUsers.remove();
             } else {
                 System.out.println(user);
             }
@@ -34,7 +34,9 @@ public class IteratorLearn {
 }
 
 
-final class User implements Cloneable{
+
+
+final class User implements Cloneable {
     private String name;
     private int age;
 
@@ -47,41 +49,45 @@ final class User implements Cloneable{
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        if(!(obj instanceof User)) {
+        if (!(obj instanceof User)) {
             return false;
         }
-        User user = (User)obj;
-        //if(this.name==user.name && this.age==user.age)
-        if(this.name.equals(user.name)
-                && this.age==user.age) {
+        User user = (User) obj;
+        // if(this.name==user.name && this.age==user.age)
+        if (this.name.equals(user.name) && this.age == user.age) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
     @Override
     public int hashCode() {
         return name.hashCode() + age;
     }
+
     @Override
     public String toString() {
         return "{name:'" + name + "',age:" + age + "}";
     }
+
     @Override
-    public Object clone()  {
+    public Object clone() {
         Object object = null;
         try {
             object = super.clone();
-        } catch (CloneNotSupportedException e) {}
+        } catch (CloneNotSupportedException e) {
+        }
         return object;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
+
     public String getName() {
         return name;
     }

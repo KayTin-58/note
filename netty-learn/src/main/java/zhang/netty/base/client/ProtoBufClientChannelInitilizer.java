@@ -24,11 +24,11 @@ public class ProtoBufClientChannelInitilizer extends ChannelInitializer<NioSocke
         ChannelPipeline channelPipeline = ch.pipeline();
 
         channelPipeline.addLast(new ProtobufVarint32FrameDecoder());
-        //channelPipeline.addLast(new ProtobufDecoder(Persons.Person.getDefaultInstance()));
+        // channelPipeline.addLast(new ProtobufDecoder(Persons.Person.getDefaultInstance()));
         channelPipeline.addLast(new ProtobufDecoder(Messages.ChatMsg.getDefaultInstance()));
         channelPipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         channelPipeline.addLast(new ProtobufEncoder());
-        //channelPipeline.addLast(new MyProtoBufClientHandler());
+        // channelPipeline.addLast(new MyProtoBufClientHandler());
         channelPipeline.addLast(new MessageClientHandler());
     }
 }

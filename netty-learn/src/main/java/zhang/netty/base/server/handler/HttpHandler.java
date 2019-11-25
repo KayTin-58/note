@@ -21,20 +21,21 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject> {
 
     /**
      * 响应客户端请求
+     * 
      * @param ctx
      * @param httpObject
      * @throws Exception
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject httpObject) throws Exception {
-        log.info("{channelRead0}:"+"【执行！】");
+        log.info("{channelRead0}:" + "【执行！】");
 
-        if(httpObject instanceof HttpRequest) {
+        if (httpObject instanceof HttpRequest) {
 
-            HttpRequest httpRequest = (HttpRequest)httpObject;
+            HttpRequest httpRequest = (HttpRequest) httpObject;
             RequestHeaders requestHeaders = packageRequestHeaders(httpRequest);
-            log.info("{server}:"+requestHeaders.toString());
-            if(requestHeaders.getUrl().contains("/favicon.ico")) {
+            log.info("{server}:" + requestHeaders.toString());
+            if (requestHeaders.getUrl().contains("/favicon.ico")) {
                 log.warn(requestHeaders.getUrl());
                 return;
             }
@@ -47,15 +48,15 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject> {
              * 构造响应头
              */
             FullHttpResponse response =
-                    new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,context);
+                            new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, context);
             /**
              * 返回的数据类型
              */
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
             /**
              * 数据长度
              */
-            response.headers().set(HttpHeaderNames.CONTENT_LENGTH,context.readableBytes());
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, context.readableBytes());
             /**
              * 写入返回数据
              */
@@ -67,36 +68,37 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject> {
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        log.info("{server}:"+"【channelRegistered】");
+        log.info("{server}:" + "【channelRegistered】");
         super.channelRegistered(ctx);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        log.info("{server}:"+"【channelUnregistered】");
+        log.info("{server}:" + "【channelUnregistered】");
         super.channelUnregistered(ctx);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("{server}:"+"【channelActive】");
+        log.info("{server}:" + "【channelActive】");
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("{server}:"+"【channelInactive】");
+        log.info("{server}:" + "【channelInactive】");
         super.channelInactive(ctx);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        log.info("{server}:"+"【channelReadComplete】");
+        log.info("{server}:" + "【channelReadComplete】");
         super.channelReadComplete(ctx);
     }
 
     /**
      * 封装请求头参数
+     * 
      * @param httpRequest
      * @return
      */
@@ -104,11 +106,8 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject> {
         String methodName = httpRequest.method().name();
         String url = httpRequest.uri();
         String version = httpRequest.protocolVersion().toString();
-        RequestHeaders requestHeaders = RequestHeaders.builder()
-                .menthodName(methodName)
-                .url(url)
-                .version(version)
-                .build();
+        RequestHeaders requestHeaders =
+                        RequestHeaders.builder().menthodName(methodName).url(url).version(version).build();
         return requestHeaders;
     }
 }

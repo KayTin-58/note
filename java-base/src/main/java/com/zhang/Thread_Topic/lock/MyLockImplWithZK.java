@@ -19,9 +19,9 @@ public class MyLockImplWithZK implements Lock, Watcher {
 
     private Syn syn;
     private static ZooKeeper zk = null;
-    private String ROOT_LOCK = "/testRoot"; //定义根节点
+    private String ROOT_LOCK = "/testRoot"; // 定义根节点
 
-    private static final String LOCK = "/testRoot/children" ;
+    private static final String LOCK = "/testRoot/children";
 
     /**
      * 信号量，阻塞程序执行，用于等待zookeeper连接成功，发送成功信号
@@ -30,8 +30,7 @@ public class MyLockImplWithZK implements Lock, Watcher {
 
     public MyLockImplWithZK() {
         try {
-            zk = new ZooKeeper("192.168.230.140:2181",
-                    40000, new Watcher() {
+            zk = new ZooKeeper("192.168.230.140:2181", 40000, new Watcher() {
                 @Override
                 public void process(WatchedEvent watchedEvent) {
                     Event.KeeperState state = watchedEvent.getState();
@@ -45,11 +44,10 @@ public class MyLockImplWithZK implements Lock, Watcher {
                 }
             });
             connectedSemaphore.await();
-            //判断根节点是否存在
+            // 判断根节点是否存在
             Stat stat = zk.exists(ROOT_LOCK, false);
-            if (stat == null) {//如果不存在创建
-                zk.create(ROOT_LOCK, "0".getBytes(),
-                        ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            if (stat == null) {// 如果不存在创建
+                zk.create(ROOT_LOCK, "0".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
 
             syn = new Syn();
@@ -73,9 +71,9 @@ public class MyLockImplWithZK implements Lock, Watcher {
         @Override
         protected boolean tryAcquire(int arg) {
             /**
-             * 这里因为创建了持久节点 在zk挂掉的时候节点不会消失  所以会形无限自旋
+             * 这里因为创建了持久节点 在zk挂掉的时候节点不会消失 所以会形无限自旋
              */
-            for (; ; ) {
+            for (;;) {
                 try {
                     if (zk.exists(LOCK, false) == null) {
                         zk.create(LOCK, LOCK.getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.PERSISTENT);
@@ -102,7 +100,7 @@ public class MyLockImplWithZK implements Lock, Watcher {
                 if (zk.exists(LOCK, false) == null) {
                     throw new RuntimeException();
                 }
-                for(;;) {
+                for (;;) {
                     zk.delete(LOCK, -1);
                     setExclusiveOwnerThread(null);
                     return true;

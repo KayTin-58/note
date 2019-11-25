@@ -18,7 +18,7 @@ public class SerializeManager {
     private static final Map<Byte, Serializer> serializelMap = new ConcurrentHashMap<>();
 
     static {
-        serializelMap.put(JSONSerializer.FAST_JSON,JSONSerializer.INSTANCE);
+        serializelMap.put(JSONSerializer.FAST_JSON, JSONSerializer.INSTANCE);
     }
 
     public static Serializer getSerializer(byte type) {

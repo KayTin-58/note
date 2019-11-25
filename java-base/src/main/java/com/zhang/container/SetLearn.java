@@ -11,7 +11,8 @@ public class SetLearn {
         int oldCap = 100;
         int newCap = 200;
 
-        System.out.println(a&oldCap);
-        System.out.println(a&newCap);
+
+        System.out.println(a & oldCap);
+        System.out.println(a & newCap);
     }
 }

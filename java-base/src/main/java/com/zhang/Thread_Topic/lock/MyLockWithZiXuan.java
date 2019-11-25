@@ -12,11 +12,11 @@ import java.util.concurrent.locks.Lock;
  */
 public class MyLockWithZiXuan implements Lock {
 
-   public MyLockWithZiXuan() {
-       this.syn = new Syn();
-   }
+    public MyLockWithZiXuan() {
+        this.syn = new Syn();
+    }
 
-   private Syn syn;
+    private Syn syn;
 
     @Override
     public void lock() {
@@ -40,7 +40,7 @@ public class MyLockWithZiXuan implements Lock {
 
     @Override
     public void unlock() {
-       syn.tryRelease(0);
+        syn.tryRelease(0);
     }
 
     @Override
@@ -62,6 +62,7 @@ public class MyLockWithZiXuan implements Lock {
 
         /**
          * 获取锁
+         * 
          * @param arg
          * @return
          */
@@ -70,8 +71,8 @@ public class MyLockWithZiXuan implements Lock {
             /**
              * 自旋
              */
-            for(;;) {
-                if(compareAndSetState(0,1)) {
+            for (;;) {
+                if (compareAndSetState(0, 1)) {
                     setExclusiveOwnerThread(Thread.currentThread());
                     return true;
                 }
@@ -80,13 +81,14 @@ public class MyLockWithZiXuan implements Lock {
 
         /**
          * 释放锁
+         * 
          * @param arg
          * @return
          */
         @Override
         protected boolean tryRelease(int arg) {
-            if(getState() ==0) {
-               throw new RuntimeException();
+            if (getState() == 0) {
+                throw new RuntimeException();
             }
             setState(0);
             setExclusiveOwnerThread(null);

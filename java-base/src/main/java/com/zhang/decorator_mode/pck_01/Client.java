@@ -1,8 +1,7 @@
 package com.zhang.decorator_mode.pck_01;
 
 /**
- * 调用客户端
- * Created by BrightLoong on 2018/4/22.
+ * 调用客户端 Created by BrightLoong on 2018/4/22.
  */
 public class Client {
     public static void main(String[] args) {

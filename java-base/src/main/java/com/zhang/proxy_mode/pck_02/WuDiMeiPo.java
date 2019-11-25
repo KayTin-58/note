@@ -17,14 +17,14 @@ public class WuDiMeiPo implements InvocationHandler {
     public Object getInstance(DanShenDog danShenDog) {
         this.danShenDog = danShenDog;
         Class<?> c = danShenDog.getClass();
-        return Proxy.newProxyInstance(c.getClassLoader(),c.getInterfaces(),this);
+        return Proxy.newProxyInstance(c.getClassLoader(), c.getInterfaces(), this);
     }
 
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("媒婆开始物色！");
-        method.invoke(this.danShenDog,args);
+        method.invoke(this.danShenDog, args);
         System.out.println("媒婆完工收钱！");
         return null;
     }

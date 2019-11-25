@@ -24,10 +24,7 @@ public class Main {
         System.out.println(superPerson1.getPerson().toString());
 
         /**
-         * false
-         * true
-         * Person{name='张三', addre='上海', age=23}
-         * Person{name='张三', addre='上海', age=23}
+         * false true Person{name='张三', addre='上海', age=23} Person{name='张三', addre='上海', age=23}
          */
 
     }

@@ -16,13 +16,13 @@ public class GameDear implements InvocationHandler {
     public Object getInstance(DanShenDog danShenDog) {
         this.danShenDog = danShenDog;
         Class<?> c = this.danShenDog.getClass();
-        return Proxy.newProxyInstance(c.getClassLoader(),c.getInterfaces(),this);
+        return Proxy.newProxyInstance(c.getClassLoader(), c.getInterfaces(), this);
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("你的游戏情驴已上线！");
-        method.invoke(danShenDog,args);
+        method.invoke(danShenDog, args);
         System.out.println("游戏结束！");
         return null;
     }

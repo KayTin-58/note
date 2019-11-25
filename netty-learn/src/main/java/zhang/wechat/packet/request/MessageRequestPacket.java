@@ -26,9 +26,6 @@ public class MessageRequestPacket extends Packet {
 
     @Override
     public String toString() {
-        return "MessageRequestPacket{" +
-                "message='" + message + '\'' +
-                ", toUserId='" + toUserId + '\'' +
-                '}';
+        return "MessageRequestPacket{" + "message='" + message + '\'' + ", toUserId='" + toUserId + '\'' + '}';
     }
 }

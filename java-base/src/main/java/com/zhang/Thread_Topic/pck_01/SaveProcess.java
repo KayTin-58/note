@@ -21,8 +21,7 @@ public class SaveProcess extends Thread implements RequestProcess {
         this.process = process;
     }
 
-    public SaveProcess() {
-    }
+    public SaveProcess() {}
 
     @Override
     public void run() {
@@ -34,12 +33,9 @@ public class SaveProcess extends Thread implements RequestProcess {
                  */
                 Thread.sleep(100);
                 /**
-                 * 做成可以动态组合的链式处理
-                 * 如果传入了下游链处理器则执行下游处理逻辑
+                 * 做成可以动态组合的链式处理 如果传入了下游链处理器则执行下游处理逻辑
                  */
-                Optional.ofNullable(this.process).map( o ->
-                     o.processReq(request)
-                );
+                Optional.ofNullable(this.process).map(o -> o.processReq(request));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

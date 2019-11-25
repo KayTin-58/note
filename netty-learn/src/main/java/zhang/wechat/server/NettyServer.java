@@ -24,30 +24,27 @@ public class NettyServer {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap
-                .group(boosGroup, workerGroup)
-                .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.SO_BACKLOG, 1024)
-                .childOption(ChannelOption.SO_KEEPALIVE, true)
-                .childOption(ChannelOption.TCP_NODELAY, true)
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new LifeCyCleTestHandler());
-                        /**
-                         * 添加拆包器
-                         *
-                         * 基于偏移长度的拆包
-                         */
-                        ch.pipeline().addLast(new Spliter());
-                        ch.pipeline().addLast(new PacketDecode());
-                        ch.pipeline().addLast(new LoginServerHandler());
+        serverBootstrap.group(boosGroup, workerGroup).channel(NioServerSocketChannel.class)
+                        .option(ChannelOption.SO_BACKLOG, 1024).childOption(ChannelOption.SO_KEEPALIVE, true)
+                        .childOption(ChannelOption.TCP_NODELAY, true)
+                        .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                            @Override
+                            protected void initChannel(NioSocketChannel ch) {
+                                ch.pipeline().addLast(new LifeCyCleTestHandler());
+                                /**
+                                 * 添加拆包器
+                                 *
+                                 * 基于偏移长度的拆包
+                                 */
+                                ch.pipeline().addLast(new Spliter());
+                                ch.pipeline().addLast(new PacketDecode());
+                                ch.pipeline().addLast(new LoginServerHandler());
 
-                        ch.pipeline().addLast(new AuthHandler());
-                        ch.pipeline().addLast(new MessageServerHandler());
-                        ch.pipeline().addLast(new PacketEncoder());
-                    }
-                });
+                                ch.pipeline().addLast(new AuthHandler());
+                                ch.pipeline().addLast(new MessageServerHandler());
+                                ch.pipeline().addLast(new PacketEncoder());
+                            }
+                        });
 
 
         bind(serverBootstrap, PORT);

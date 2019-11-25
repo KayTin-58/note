@@ -9,7 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-<script  type="text/javascript">
+<script type="text/javascript">
     var socket;
     if(window.WebSocket) {
         socket = new WebSocket("ws://localhost:8888/ws")
@@ -41,14 +41,15 @@
         }
 
     }
+
 </script>
 
 <form style="width: 300px">
     <h3>客户端输入消息</h3>
-    <textarea name="message"  style="width: 300px;height: 140px"></textarea>
+    <textarea name="message" style="width: 300px;height: 140px"></textarea>
     <input type="button" value="发送消息" onclick="send(this.form.message.value)">
     <h3>服务端输出消息</h3>
-    <textarea id="responseText"  style="width: 300px;height: 140px"></textarea>
+    <textarea id="responseText" style="width: 300px;height: 140px"></textarea>
 
 </form>
 </body>

@@ -30,23 +30,16 @@ public class Test {
         String P_Notify_URL = "hanson";
         String P_PostKey = "hanson";
         String postUrl = String.format(
-                "?P_UserId=%s&P_OrderId=%s&P_CardId=%s&P_CardPass=%s&P_FaceValue=%s&P_ChannelId=%s&P_Subject=%s&P_Price=%s"
-                , P_UserId
-                , P_OrderId
-                , P_CardId
-                , P_CardPass
-                , P_FaceValue
-                , P_ChannelId
-                , P_Subject
-                , P_Price
-                );
+                        "?P_UserId=%s&P_OrderId=%s&P_CardId=%s&P_CardPass=%s&P_FaceValue=%s&P_ChannelId=%s&P_Subject=%s&P_Price=%s",
+                        P_UserId, P_OrderId, P_CardId, P_CardPass, P_FaceValue, P_ChannelId, P_Subject, P_Price);
         System.out.println(postUrl);
 
-        String exportJsonApi ="1234";
+        String exportJsonApi = "1234";
         String serviceName = "HDSP";
         boolean checkPoliciesExists = true;
 
-        String s = String.format("%s?serviceName=%s&checkPoliciesExists=%b",exportJsonApi, serviceName, checkPoliciesExists);
+        String s = String.format("%s?serviceName=%s&checkPoliciesExists=%b", exportJsonApi, serviceName,
+                        checkPoliciesExists);
         System.out.println(s);
     }
 

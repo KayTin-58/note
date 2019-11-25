@@ -19,9 +19,10 @@ public class CountDownLatchStudy {
      * 不规范
      */
     static ExecutorService service = Executors.newFixedThreadPool(100);
+
     public static void main(String[] args) {
-        for(int i = 0; i < 100; i++) {
-            service.submit(new Run(i,cd));
+        for (int i = 0; i < 100; i++) {
+            service.submit(new Run(i, cd));
         }
 
         try {
@@ -34,11 +35,12 @@ public class CountDownLatchStudy {
     }
 
 
-    static class Run implements  Runnable{
+    static class Run implements Runnable {
 
         CountDownLatch countDownLatch = null;
         int i;
-        public Run(int i,CountDownLatch countDownLatch) {
+
+        public Run(int i, CountDownLatch countDownLatch) {
             this.i = i;
             this.countDownLatch = countDownLatch;
         }

@@ -21,13 +21,11 @@ public class Main {
         danShenDog01.playGame();
 
 
-        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy", new Class[]{danShenDog01.getClass()});
-        try(
-                FileOutputStream fos =new FileOutputStream(new File("D:\\$Proxy.class"))
-        ){
+        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy", new Class[] {danShenDog01.getClass()});
+        try (FileOutputStream fos = new FileOutputStream(new File("D:\\$Proxy.class"))) {
             fos.write(bytes);
             fos.flush();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

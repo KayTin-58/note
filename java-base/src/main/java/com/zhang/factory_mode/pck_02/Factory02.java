@@ -13,7 +13,7 @@ public class Factory02 {
     public static void main(String[] args) {
         AppleFactory appleFactory = new AppleFactory();
         PearFactory pearFactory = new PearFactory();
-        Apple apple = (Apple) appleFactory.createFruit();//获得苹果
-        Pear pear = (Pear) pearFactory.createFruit();//获得梨
+        Apple apple = (Apple) appleFactory.createFruit();// 获得苹果
+        Pear pear = (Pear) pearFactory.createFruit();// 获得梨
     }
 }

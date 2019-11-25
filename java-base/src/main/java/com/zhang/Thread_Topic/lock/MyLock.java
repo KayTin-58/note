@@ -12,11 +12,11 @@ import java.util.concurrent.locks.Lock;
  */
 public class MyLock implements Lock {
 
-   public MyLock() {
-       this.syn = new Syn();
-   }
+    public MyLock() {
+        this.syn = new Syn();
+    }
 
-   private Syn syn;
+    private Syn syn;
 
     @Override
     public void lock() {
@@ -40,7 +40,7 @@ public class MyLock implements Lock {
 
     @Override
     public void unlock() {
-       syn.tryRelease(0);
+        syn.tryRelease(0);
     }
 
     @Override
@@ -62,6 +62,7 @@ public class MyLock implements Lock {
 
         /**
          * 获取锁
+         * 
          * @param arg
          * @return
          */
@@ -70,7 +71,7 @@ public class MyLock implements Lock {
             /**
              * 非阻塞的，获取失败则返回
              */
-            if(compareAndSetState(0,1)) {
+            if (compareAndSetState(0, 1)) {
                 setExclusiveOwnerThread(Thread.currentThread());
                 return true;
             }
@@ -79,13 +80,14 @@ public class MyLock implements Lock {
 
         /**
          * 释放锁
+         * 
          * @param arg
          * @return
          */
         @Override
         protected boolean tryRelease(int arg) {
-            if(getState() ==0) {
-               throw new RuntimeException();
+            if (getState() == 0) {
+                throw new RuntimeException();
             }
             setState(0);
             setExclusiveOwnerThread(null);

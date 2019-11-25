@@ -9,6 +9,7 @@ public interface PayMent {
 
     /**
      * 支付方法
+     * 
      * @param order
      * @return
      */

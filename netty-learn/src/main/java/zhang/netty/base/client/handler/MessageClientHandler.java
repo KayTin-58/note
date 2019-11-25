@@ -26,33 +26,24 @@ public class MessageClientHandler extends SimpleChannelInboundHandler<Messages.C
         Messages.ChatMsg message = null;
         switch (i) {
             case 0: {
-                 message = Messages.ChatMsg.newBuilder()
-                        .setMsgType(Messages.ChatMsg.MsgType.Login)
-                        .setLogin(Messages.Login.newBuilder().setId("123")
-                                .setUserName("张锡凯")
-                                .setUserPassword("123").build()).build();
+                message = Messages.ChatMsg.newBuilder().setMsgType(Messages.ChatMsg.MsgType.Login)
+                                .setLogin(Messages.Login.newBuilder().setId("123").setUserName("张锡凯")
+                                                .setUserPassword("123").build())
+                                .build();
                 break;
             }
             case 1: {
-                 message = Messages.ChatMsg.newBuilder()
-                        .setMsgType(Messages.ChatMsg.MsgType.Message)
-                        .setMsg(Messages.Message.newBuilder().setId("123")
-                                .setMsg("来自外星球的问候")
-                                .setFromUser("未知星球")
-                                .setToUser("地球")
-                                .build())
-                        .build();
+                message = Messages.ChatMsg.newBuilder().setMsgType(Messages.ChatMsg.MsgType.Message)
+                                .setMsg(Messages.Message.newBuilder().setId("123").setMsg("来自外星球的问候")
+                                                .setFromUser("未知星球").setToUser("地球").build())
+                                .build();
                 break;
             }
             case 2: {
-                 message = Messages.ChatMsg.newBuilder()
-                        .setMsgType(Messages.ChatMsg.MsgType.CreateGroup)
-                        .setCreateGroup(Messages.CreateGroup.newBuilder().setId("123")
-                                .setGroupName("世界大happy")
-                                .setId("00007")
-                                .setUserId("8848")
-                                .build())
-                        .build();
+                message = Messages.ChatMsg.newBuilder().setMsgType(Messages.ChatMsg.MsgType.CreateGroup)
+                                .setCreateGroup(Messages.CreateGroup.newBuilder().setId("123").setGroupName("世界大happy")
+                                                .setId("00007").setUserId("8848").build())
+                                .build();
                 break;
             }
         }

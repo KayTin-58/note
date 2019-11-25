@@ -8,7 +8,7 @@ import zhang.wechat.serializer.Serializer;
  *
  * @author zb 2019/07/03 19:25
  */
-public class JSONSerializer implements SerializerAlgorithm{
+public class JSONSerializer implements SerializerAlgorithm {
 
     public static Serializer INSTANCE = new JSONSerializer();
 
@@ -25,6 +25,6 @@ public class JSONSerializer implements SerializerAlgorithm{
 
     @Override
     public <T> T deserialize(Class<T> clazz, byte[] bytes) {
-        return JSON.parseObject(bytes,clazz);
+        return JSON.parseObject(bytes, clazz);
     }
 }

@@ -21,8 +21,7 @@ public class ConcurrentLinkedQueueLearn {
         ConcurrentLinkedQueue clq = new ConcurrentLinkedQueue();
 
         /**
-         * 1、找到尾节点
-         * 2、将新的节点设置成尾节点的next节点
+         * 1、找到尾节点 2、将新的节点设置成尾节点的next节点
          */
         clq.add("Hash");
     }
